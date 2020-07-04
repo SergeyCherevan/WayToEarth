@@ -15,7 +15,12 @@ namespace WayToEarth.GameLogic
             map = new Dictionary<string, GameObject.Action>();
         }
 
-        public static GameObject.Action GetAction(string s)
+        public static void AddMethod(GameObject.Action action)
+        {
+            map.Add(action.Method.ToString(), action);
+        }
+
+        public static GameObject.Action GetMethod(string s)
         {
             if (!map.ContainsKey(s))
                 throw new ApplicationException($"ActionNameMap has not got key \"{s}\"");
@@ -35,7 +40,12 @@ namespace WayToEarth.GameLogic
             map = new Dictionary<string, GameObject.ActCondition>();
         }
 
-        public static GameObject.ActCondition GetAction(string s)
+        public static void AddMethod(GameObject.ActCondition action)
+        {
+            map.Add(action.Method.ToString(), action);
+        }
+
+        public static GameObject.ActCondition GetMethod(string s)
         {
             if (!map.ContainsKey(s))
                 throw new ApplicationException($"gConditActionNameMap has not got key \"{s}\"");
@@ -55,7 +65,12 @@ namespace WayToEarth.GameLogic
             map = new Dictionary<string, GameObject.Interaction>();
         }
 
-        public static GameObject.Interaction GetInteraction(string s)
+        public static void AddMethod(GameObject.Interaction action)
+        {
+            map.Add(action.Method.ToString(), action);
+        }
+
+        public static GameObject.Interaction GetMethod(string s)
         {
             if (!map.ContainsKey(s))
                 throw new ApplicationException($"InteractionNameMap has not got key \"{s}\"");
@@ -75,7 +90,12 @@ namespace WayToEarth.GameLogic
             map = new Dictionary<string, GameObject.InteractCondition>();
         }
 
-        public static GameObject.InteractCondition GetAction(string s)
+        public static void AddMethod(GameObject.InteractCondition action)
+        {
+            map.Add(action.Method.ToString(), action);
+        }
+
+        public static GameObject.InteractCondition GetMethod(string s)
         {
             if (!map.ContainsKey(s))
                 throw new ApplicationException($"gConditInteractionNameMap has not got key \"{s}\"");
