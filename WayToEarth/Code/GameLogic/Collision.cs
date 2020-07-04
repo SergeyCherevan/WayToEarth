@@ -81,12 +81,12 @@ namespace WayToEarth.GameLogic
 
         static Collision()
         {
-            gConditInteractionNameMap.map.Add("isCollided", isCollided);
+            gConditInteractionNameMap.AddMethod(isCollided);
 
-            InteractionNameMap.map.Add("ObjectsCollision", ObjectsCollision);
-            InteractionNameMap.map.Add("CollisionsOfAll", CollisionsOfAll);
-            InteractionNameMap.map.Add("CollisionWhithPlanet", CollisionWhithPlanet);
-            InteractionNameMap.map.Add("CollisionOfPlanetWhithRocket", CollisionOfPlanetWhithRocket);
+            InteractionNameMap.AddMethod(ObjectsCollision);
+            InteractionNameMap.AddMethod(CollisionsOfAll);
+            InteractionNameMap.AddMethod(CollisionWhithPlanet);
+            InteractionNameMap.AddMethod(CollisionOfPlanetWhithRocket);
         }
     }
 }

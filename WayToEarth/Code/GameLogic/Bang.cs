@@ -34,7 +34,7 @@ namespace WayToEarth.GameLogic
 
         static Bang()
         {
-            ActionNameMap.map.Add("Buring", Burning);
+            ActionNameMap.AddMethod(Burning);
         }
     }
 }

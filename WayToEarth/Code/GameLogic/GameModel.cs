@@ -169,8 +169,8 @@ namespace WayToEarth.GameLogic
 
         static GameModel()
         {
-            ActionNameMap.map.Add("Win", Win);
-            ActionNameMap.map.Add("Loose", Loose);
+            ActionNameMap.AddMethod(Win);
+            ActionNameMap.AddMethod(Loose);
         }
     }
 }
