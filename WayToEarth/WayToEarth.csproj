@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Code\Addition\**" />
+    <EmbeddedResource Remove="Code\Addition\**" />
+    <None Remove="Code\Addition\**" />
+    <Page Remove="Code\Addition\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="background.png" />
+    <None Remove="Bang.png" />
+    <None Remove="CenterStar.png" />
+    <None Remove="Fire.png" />
+    <None Remove="Icon.ico" />
+    <None Remove="ManyStarsCircle.png" />
+    <None Remove="Meteor.png" />
+    <None Remove="Planet.png" />
+    <None Remove="Rocket.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Background.png" />
+    <Resource Include="Bang.png" />
+    <Resource Include="CenterStar.png" />
+    <Resource Include="Fire.png" />
+    <Resource Include="Icon.ico" />
+    <Resource Include="ManyStarsCircle.png" />
+    <Resource Include="Meteor.png" />
+    <Resource Include="Planet.png" />
+    <Resource Include="Rocket.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

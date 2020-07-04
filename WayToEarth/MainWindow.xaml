@@ -1,0 +1,286 @@
+﻿<Window x:Class="WayToEarth.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WayToEarth"
+        mc:Ignorable="d"
+        Title="Way to Earth"
+        Height="810" Width="1080" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Grid x:Name="Grid" KeyDown="MainKeyDown" Focusable="True" >
+
+        <Grid x:Name="StartMenuGrid">
+            <Grid.Background>
+                <ImageBrush ImageSource="Background.png" />
+            </Grid.Background>
+
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+
+
+            <Button x:Name="LetsPlay" Content="Let's play!" Grid.Column="1" Grid.Row="1" Cursor="Hand"  Style="{StaticResource InteractiveButton}" />
+
+        </Grid>
+
+        <Grid x:Name="LevelsMenuGrid" Visibility="Hidden">
+            <Grid.Background>
+                <ImageBrush ImageSource="Background.png" />
+            </Grid.Background>
+
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button Content="1" Grid.Column="1" Grid.Row="1" Cursor="Hand" x:Name="GoLevel1"  Style="{StaticResource LevelButton}" />
+            <Button Content="2" Grid.Column="2" Grid.Row="2" Cursor="Hand" x:Name="GoLevel2"  Style="{StaticResource LevelButton}" />
+            <Button Content="3" Grid.Column="3" Grid.Row="1" Cursor="Hand" x:Name="GoLevel3"  Style="{StaticResource LevelButton}" />
+            <Button Content="📄" Grid.Column="4" Grid.Row="2" Cursor="Hand" x:Name="GoDownloadedGame"  Style="{StaticResource LevelButton}" />
+
+        </Grid>
+
+        <Canvas x:Name="PlayingCanvas" Visibility="Hidden">
+            <Canvas.Background>
+                <ImageBrush ImageSource="Background.png" />
+            </Canvas.Background>
+
+            <TextBlock x:Name="CurrentText" Text="" Foreground="White" FontSize="10" 
+                       Height="Auto" Width="Auto"
+                       HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <Image x:Name="Border" Height="4000" Width="4000" Source="/ManyStarsCircle.png"
+                   Canvas.Left="-4000" Canvas.Top="-4000"/>
+
+            <Image x:Name="Planet" Source="/Planet.png"  Width="400" Height="280" 
+                   Canvas.Left="-400" Canvas.Top="-280"
+                   Stretch="Fill" RenderTransformOrigin="0.5, 0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+            <Image x:Name="SmallPlanet" Source="/Planet.png"  Width="200" Height="140" 
+                   Canvas.Left="-400" Canvas.Top="-280"
+                   Stretch="Fill" RenderTransformOrigin="0.5, 0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+            <Image x:Name="CenterStar" Source="/CenterStar.png" Width="400" Height="400"
+                   Canvas.Left="-400" Canvas.Top="-400"
+                   Stretch="Fill" RenderTransformOrigin="0.5, 0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+            <Image x:Name="Rocket" Source="/Rocket.png" Width="60" Height="97.5" IsEnabled="False" RenderTransformOrigin="0.5, 0.5" Stretch="Fill">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+
+            <Image x:Name="Meteor" Source="/Meteor.png" Width="40" Height="40" IsEnabled="False" RenderTransformOrigin="0.5, 0.5"
+                   Canvas.Left="-40" Canvas.Top="-40">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+
+            <Image x:Name="Fire" Height="125" Width="50" IsEnabled="False" Source="/Fire.png" Stretch="Fill" OpacityMask="Red" RenderTransformOrigin="0.5, 0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+            <Image x:Name="Bang" Source="/Bang.png"  Width="50" Height="50" Canvas.Top="-50" Canvas.Left="-50" Stretch="Fill" RenderTransformOrigin="0.5, 0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+            <Image x:Name="BigBang" Source="/Bang.png"  Width="75" Height="75" Canvas.Top="-75" Canvas.Left="-75" Stretch="Fill" RenderTransformOrigin="0.5, 0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+            <Image x:Name="LargeBang" Source="/Bang.png"  Width="200" Height="200" Canvas.Top="-200" Canvas.Left="-200" Stretch="Fill" RenderTransformOrigin="0.5, 0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+            <!--<Button x:Name="Help" Content="?" Cursor="Hand"  Style="{StaticResource LevelButton}" 
+                    Canvas.Bottom="5" Canvas.Right="5" Panel.ZIndex="1"
+                    Width="85" Height="85"/>-->
+
+            <!--<Button x:Name="Pause" Content="❚❚" Cursor="Hand"  Style="{StaticResource LevelButton}" 
+                    Canvas.Bottom="100" Canvas.Right="5" Panel.ZIndex="1"
+                    Width="85" Height="85"/>-->
+
+            <Button x:Name="Pause" Content="❚❚" Cursor="Hand"  Style="{StaticResource LevelButton}" 
+                    Canvas.Bottom="5" Canvas.Right="5" Panel.ZIndex="1"
+                    Width="85" Height="85"/>
+        </Canvas>
+
+
+        <Grid x:Name="GameOverGrid" Visibility="Hidden" Background="#88303055">
+
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+
+
+            <TextBlock x:Name="GameOverTitle" Text="" Foreground="White" FontSize="100" 
+                       Height="Auto" Width="Auto"
+                       Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"
+                       HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <Button x:Name="PlayAgain" Grid.Column="1" Grid.Row="1" Cursor="Hand"  Style="{StaticResource InteractiveButton}" FontSize="40">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center">Play again</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" FontSize="55">↺</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="BackToMenu" Content="⬅" Grid.Column="1" Grid.Row="2" Cursor="Hand"  Style="{StaticResource LevelButton}" 
+                    Width="90" Height="90"/>
+
+        </Grid>
+
+        <Grid x:Name="PauseGrid" Visibility="Hidden" Background="#88303055">
+
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+
+
+            <TextBlock x:Name="PauseTitle" Text="Pause" Foreground="White" FontSize="100" 
+                       Height="Auto" Width="Auto"
+                       Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0"
+                       HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+            <TextBlock x:Name="Hints1" Text="Управляйте ракетой с помошью клавиш вверх/W, вниз/S - для придания импульса ракете вперёд и назад, влево/A, вправо/D - для разворотов."
+                       Foreground="White" FontSize="15" 
+                       Height="Auto" Width="Auto"
+                       Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1"
+                       HorizontalAlignment="Center" VerticalAlignment="Top"
+                       Margin="10" />
+
+            <TextBlock x:Name="Hints2" Text="Ваша задача - долететь до края системы, не столкнувшись с планетой и метеоритами"
+                       Foreground="White" FontSize="15" 
+                       Height="Auto" Width="Auto"
+                       Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2"
+                       HorizontalAlignment="Center" VerticalAlignment="Top"
+                       Margin="10" />
+
+
+            <Button x:Name="PlayNext" Content="▷" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Cursor="Hand"  Style="{StaticResource LevelButton}" />
+
+            <Button x:Name="BackToMenuPause" Content="⬅" Grid.Column="1" Grid.Row="4" Cursor="Hand"  Style="{StaticResource LevelButton}" 
+                    Width="90" Height="90"/>
+
+            <Button x:Name="Save" Content="🖫" Grid.Column="2" Grid.Row="4" Cursor="Hand"  Style="{StaticResource LevelButton}" 
+                    Width="90" Height="90"/>
+
+        </Grid>
+
+        <StackPanel x:Name="ListOfSavedGamesStack" Visibility="Hidden">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="Background.png" />
+            </StackPanel.Background>
+
+            <Button x:Name="GoToMenuFromSavedGame" Content="⬅" Cursor="Hand"  Style="{StaticResource LevelButton}" />
+        </StackPanel>
+
+    </Grid>
+</Window>
