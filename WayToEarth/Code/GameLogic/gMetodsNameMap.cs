@@ -23,7 +23,7 @@ namespace WayToEarth.GameLogic
             return map[s];
         }
 
-        public static string GetName(GameObject.gAction action) => map.KeyOf(action);
+        public static string GetName(GameObject.gAction action) => map.First((e) => e.Value == action).Key;
     }
 
     static class gConditActionNameMap
@@ -43,7 +43,7 @@ namespace WayToEarth.GameLogic
             return map[s];
         }
 
-        public static string GetName(GameObject.ActCondition condit) => map.KeyOf(condit);
+        public static string GetName(GameObject.ActCondition condit) => map.First((e) => e.Value == condit).Key;
     }
 
     static class gInteractionNameMap
@@ -63,7 +63,7 @@ namespace WayToEarth.GameLogic
             return map[s];
         }
 
-        public static string GetName(GameObject.gInteraction interaction) => map.KeyOf(interaction);
+        public static string GetName(GameObject.gInteraction action) => map.First((e) => e.Value == action).Key;
     }
 
     static class gConditInteractionNameMap
@@ -83,6 +83,6 @@ namespace WayToEarth.GameLogic
             return map[s];
         }
 
-        public static string GetName(GameObject.InteractCondition condit) => map.KeyOf(condit);
+        public static string GetName(GameObject.InteractCondition condit) => map.First((e) => e.Value == condit).Key;
     }
 }
