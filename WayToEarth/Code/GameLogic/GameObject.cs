@@ -79,7 +79,17 @@ namespace WayToEarth.GameLogic
         public virtual List<KeyValuePair<ActCondition, gAction>> ActToConditAfterIntract { get; set; }
         [JsonIgnore]
         public virtual List<KeyValuePair<ActCondition, gAction>> ActToConditAfterPhisic { get; set; }
-        
+
+        public virtual string strInteractionWithAll { get; set; }
+        public virtual string strActionAlwaysBeforeIntract { get; set; }
+        public virtual string strActionAlwaysAfterIntract { get; set; }
+        public virtual string strActionAlwaysAfterPhisic { get; set; }
+
+        public virtual List<KeyValuePair<string, string>> strInteractToCondit { get; set; }
+        public virtual List<KeyValuePair<string, string>> strActToConditBeforeIntract { get; set; }
+        public virtual List<KeyValuePair<string, string>> strActToConditAfterIntract { get; set; }
+        public virtual List<KeyValuePair<string, string>> strActToConditAfterPhisic { get; set; }
+
         public GameObject()
         {
             isValid = true;
