@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using WayToEarth.GameLogic;
 
 namespace WayToEarth.GameLogic
 {
-    static class ActionNameMap
+    static class gActionNameMap
     {
         public static Dictionary<string, GameObject.Action> map;
 
-        static ActionNameMap()
+        static gActionNameMap()
         {
             map = new Dictionary<string, GameObject.Action>();
         }
@@ -23,12 +24,36 @@ namespace WayToEarth.GameLogic
         public static GameObject.Action GetMethod(string s)
         {
             if (!map.ContainsKey(s))
-                throw new ApplicationException($"ActionNameMap has not got key \"{s}\"");
+                throw new ApplicationException($"gActionNameMap has not got key \"{s}\"");
 
             return map[s];
         }
 
-        public static string GetName(GameObject.Action action) => map.KeyOf(action);
+        public static string GetName(GameObject.Action action)
+        {
+            Delegate[] listOfDelegate = action.GetInvocationList();
+
+            if (listOfDelegate.Length > 1)
+            {
+                List<string> listOfNames = new List<string>();
+
+                foreach (var deleg in listOfDelegate)
+                {
+                    listOfNames.Add(GetName(deleg as GameObject.Action));
+                }
+
+                return String.Join("\n", listOfNames);
+            }
+
+            var ret = map.KeyOf(action);
+
+            if (ret == null)
+                throw new ApplicationException(
+                        $"gActionNameMap has not got value \"{action.Method}\""
+                    );
+
+            return ret;
+        }
     }
 
     static class gConditActionNameMap
@@ -53,14 +78,24 @@ namespace WayToEarth.GameLogic
             return map[s];
         }
 
-        public static string GetName(GameObject.ActCondition condit) => map.KeyOf(condit);
+        public static string GetName(GameObject.ActCondition condit)
+        {
+            var ret = map.KeyOf(condit);
+
+            if (ret == null)
+                throw new ApplicationException(
+                        $"gConditActionNameMap has not got value \"{condit.Method}\""
+                    );
+
+            return ret;
+        }
     }
 
-    static class InteractionNameMap
+    static class gInteractionNameMap
     {
         public static Dictionary<string, GameObject.Interaction> map;
 
-        static InteractionNameMap()
+        static gInteractionNameMap()
         {
             map = new Dictionary<string, GameObject.Interaction>();
         }
@@ -73,12 +108,22 @@ namespace WayToEarth.GameLogic
         public static GameObject.Interaction GetMethod(string s)
         {
             if (!map.ContainsKey(s))
-                throw new ApplicationException($"InteractionNameMap has not got key \"{s}\"");
+                throw new ApplicationException($"gInteractionNameMap has not got key \"{s}\"");
 
             return map[s];
         }
 
-        public static string GetName(GameObject.Interaction interaction) => map.KeyOf(interaction);
+        public static string GetName(GameObject.Interaction interaction)
+        {
+            var ret = map.KeyOf(interaction);
+
+            if (ret == null)
+                throw new ApplicationException(
+                        $"gInteractionNameMap has not got value \"{interaction.Method}\""
+                    );
+
+            return ret;
+        }
     }
 
     static class gConditInteractionNameMap
@@ -103,6 +148,16 @@ namespace WayToEarth.GameLogic
             return map[s];
         }
 
-        public static string GetName(GameObject.InteractCondition condit) => map.KeyOf(condit);
+        public static string GetName(GameObject.InteractCondition condit)
+        {
+            var ret = map.KeyOf(condit);
+
+            if (ret == null)
+                throw new ApplicationException(
+                        $"gConditInteractionNameMap has not got value \"{condit.Method}\""
+                    );
+
+            return ret;
+        }
     }
 }
