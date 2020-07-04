@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows;
 using System.Windows.Controls;
 using WayToEarth.GameLogic;
 
@@ -16,21 +15,16 @@ namespace WayToEarth
         {
             map = new Dictionary<string, Image>();
 
-            AddImage(MainWindow.window.Border);
-            AddImage(MainWindow.window.Planet);
-            AddImage(MainWindow.window.SmallPlanet);
-            AddImage(MainWindow.window.CenterStar);
-            AddImage(MainWindow.window.Rocket);
-            AddImage(MainWindow.window.Meteor);
-            AddImage(MainWindow.window.Fire);
-            AddImage(MainWindow.window.Bang);
-            AddImage(MainWindow.window.BigBang);
-            AddImage(MainWindow.window.LargeBang);
-        }
-
-        public static void AddImage(Image image)
-        {
-            map.Add(image.Name, image);
+            map.Add("Border", MainWindow.window.Border);
+            map.Add("Planet", MainWindow.window.Planet);
+            map.Add("SmallPlanet", MainWindow.window.SmallPlanet);
+            map.Add("CenterStar", MainWindow.window.CenterStar);
+            map.Add("Rocket", MainWindow.window.Rocket);
+            map.Add("Meteor", MainWindow.window.Meteor);
+            map.Add("Fire", MainWindow.window.Fire);
+            map.Add("Bang", MainWindow.window.Bang);
+            map.Add("BigBang", MainWindow.window.BigBang);
+            map.Add("LargeBang", MainWindow.window.LargeBang);
         }
 
         public static Image GetImage(string s)

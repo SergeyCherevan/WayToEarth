@@ -53,7 +53,7 @@ namespace WayToEarth.GameLogic
 
         static PlayingBorder()
         {
-            gConditActionNameMap.AddMethod(WentAbroad);
+            gConditActionNameMap.map.Add("WentAbroad", WentAbroad);
         }
     }
 }
