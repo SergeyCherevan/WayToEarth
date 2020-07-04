@@ -57,28 +57,28 @@ namespace WayToEarth.GameLogic
         virtual public bool isVisible { get; set; }
 
 
-        public delegate void gInteraction(GameObject go1, GameObject go2, double timeInSec);
-        public delegate void gAction(GameObject go, double timeInSec);
+        public delegate void Interaction(GameObject go1, GameObject go2, double timeInSec);
+        public delegate void Action(GameObject go, double timeInSec);
         public delegate bool InteractCondition(GameObject go1, GameObject go2, double timeInSec);
         public delegate bool ActCondition(GameObject go, double timeInSec);
 
         [JsonIgnore]
-        public virtual gInteraction InteractionWithAll { get; set; }
+        public virtual Interaction InteractionWithAll { get; set; }
         [JsonIgnore]
-        public virtual gAction ActionAlwaysBeforeIntract { get; set; }
+        public virtual Action ActionAlwaysBeforeIntract { get; set; }
         [JsonIgnore]
-        public virtual gAction ActionAlwaysAfterIntract { get; set; }
+        public virtual Action ActionAlwaysAfterIntract { get; set; }
         [JsonIgnore]
-        public virtual gAction ActionAlwaysAfterPhisic { get; set; }
+        public virtual Action ActionAlwaysAfterPhisic { get; set; }
 
         [JsonIgnore]
-        public virtual List<KeyValuePair<InteractCondition, gInteraction>> InteractToCondit { get; set; }
+        public virtual List<KeyValuePair<InteractCondition, Interaction>> InteractToCondit { get; set; }
         [JsonIgnore]
-        public virtual List<KeyValuePair<ActCondition, gAction>> ActToConditBeforeIntract { get; set; }
+        public virtual List<KeyValuePair<ActCondition, Action>> ActToConditBeforeIntract { get; set; }
         [JsonIgnore]
-        public virtual List<KeyValuePair<ActCondition, gAction>> ActToConditAfterIntract { get; set; }
+        public virtual List<KeyValuePair<ActCondition, Action>> ActToConditAfterIntract { get; set; }
         [JsonIgnore]
-        public virtual List<KeyValuePair<ActCondition, gAction>> ActToConditAfterPhisic { get; set; }
+        public virtual List<KeyValuePair<ActCondition, Action>> ActToConditAfterPhisic { get; set; }
 
         public virtual string strInteractionWithAll { get; set; }
         public virtual string strActionAlwaysBeforeIntract { get; set; }
@@ -112,11 +112,11 @@ namespace WayToEarth.GameLogic
             o.ActionAlwaysAfterIntract = null;
             o.ActionAlwaysAfterPhisic = null;
 
-            o.InteractToCondit = new List<KeyValuePair<InteractCondition, gInteraction>>();
+            o.InteractToCondit = new List<KeyValuePair<InteractCondition, Interaction>>();
 
-            o.ActToConditBeforeIntract = new List<KeyValuePair<ActCondition, gAction>>();
-            o.ActToConditAfterIntract = new List<KeyValuePair<ActCondition, gAction>>();
-            o.ActToConditAfterPhisic = new List<KeyValuePair<ActCondition, gAction>>();
+            o.ActToConditBeforeIntract = new List<KeyValuePair<ActCondition, Action>>();
+            o.ActToConditAfterIntract = new List<KeyValuePair<ActCondition, Action>>();
+            o.ActToConditAfterPhisic = new List<KeyValuePair<ActCondition, Action>>();
         }
     }
 }

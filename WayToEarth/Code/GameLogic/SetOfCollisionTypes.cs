@@ -7,14 +7,14 @@ namespace WayToEarth.GameLogic
 {
     public class SetOfCollisionTypes
     {
-        public Dictionary<KeyValuePair<Type, Type>, gInteraction> dictionary;
+        public Dictionary<KeyValuePair<Type, Type>, Interaction> dictionary;
 
         public SetOfCollisionTypes()
         {
-            dictionary = new Dictionary<KeyValuePair<Type, Type>, gInteraction>();
+            dictionary = new Dictionary<KeyValuePair<Type, Type>, Interaction>();
         }
 
-        public gInteraction this[Type t1, Type t2]
+        public Interaction this[Type t1, Type t2]
         {
             get => dictionary[new KeyValuePair<Type, Type>(t1, t2)];
             set { dictionary[new KeyValuePair<Type, Type>(t1, t2)] = value; }
@@ -24,7 +24,7 @@ namespace WayToEarth.GameLogic
             return dictionary.ContainsKey(new KeyValuePair<Type, Type>(t1, t2));
         }
 
-        public void Add(Type t1, Type t2, gInteraction interact)
+        public void Add(Type t1, Type t2, Interaction interact)
         {
             dictionary.Add(new KeyValuePair<Type, Type>(t1, t2), interact);
         }

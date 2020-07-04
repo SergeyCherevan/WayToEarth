@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Numerics;
-using System.Text;
 using static WayToEarth.Phisic.PhisicalObject;
+using Action = WayToEarth.Phisic.PhisicalObject.Action;
 
 namespace WayToEarth.Phisic
 {
@@ -25,20 +24,20 @@ namespace WayToEarth.Phisic
 
 
 
-        public delegate void phInteraction(PhisicalObject po1, PhisicalObject po2, double timeInSec);
-        public delegate void phAction(PhisicalObject po, double timeInSec);
+        public delegate void Interaction(PhisicalObject po1, PhisicalObject po2, double timeInSec);
+        public delegate void Action(PhisicalObject po, double timeInSec);
         public delegate bool InteractCondition(PhisicalObject po1, PhisicalObject po2, double timeInSec);
         public delegate bool ActCondition(PhisicalObject po, double timeInSec);
 
         [JsonIgnore]
-        public phInteraction InteractionWithAll { get; set; }
+        public Interaction InteractionWithAll { get; set; }
         [JsonIgnore]
-        public phAction ActionAlways { get; set; }
+        public Action ActionAlways { get; set; }
 
         [JsonIgnore]
-        public List<KeyValuePair<InteractCondition, phInteraction>> InteractToCondit { get; set; }
+        public List<KeyValuePair<InteractCondition, Interaction>> InteractToCondit { get; set; }
         [JsonIgnore]
-        public List<KeyValuePair<ActCondition, phAction>> ActToCondit { get; set; }
+        public List<KeyValuePair<ActCondition, Action>> ActToCondit { get; set; }
 
 
 
@@ -66,8 +65,8 @@ namespace WayToEarth.Phisic
             o.InteractionWithAll = null;
             o.ActionAlways = null;
 
-            o.InteractToCondit = new List<KeyValuePair<InteractCondition, phInteraction>>();
-            o.ActToCondit = new List<KeyValuePair<ActCondition, phAction>>();
+            o.InteractToCondit = new List<KeyValuePair<InteractCondition, Interaction>>();
+            o.ActToCondit = new List<KeyValuePair<ActCondition, Action>>();
         }
     }
 }

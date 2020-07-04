@@ -39,7 +39,7 @@ namespace WayToEarth.GameLogic
 
         static ReactiveGases()
         {
-            gActionNameMap.map.Add("UpdateIsVisio", UpdateIsVisio);
+            ActionNameMap.map.Add("UpdateIsVisio", UpdateIsVisio);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace WayToEarth.GameLogic
 
             rocket = null;
 
-            ActToConditAfterIntract.Add(new KeyValuePair<ActCondition, gAction>(WentAbroad, GameModel.Win));
+            ActToConditAfterIntract.Add(new KeyValuePair<ActCondition, Action>(WentAbroad, GameModel.Win));
         }
 
         public PlayingBorder(Planet P, Rocket R) : base()
@@ -29,7 +29,7 @@ namespace WayToEarth.GameLogic
 
             rocket = R;
 
-            ActToConditAfterIntract.Add(new KeyValuePair<ActCondition, gAction>(WentAbroad, GameModel.Win));
+            ActToConditAfterIntract.Add(new KeyValuePair<ActCondition, Action>(WentAbroad, GameModel.Win));
         }
 
         public override Complex Coord { get { return planet?.Coord ?? 0; } set { } }

@@ -6,24 +6,24 @@ using WayToEarth.GameLogic;
 
 namespace WayToEarth.GameLogic
 {
-    static class gActionNameMap
+    static class ActionNameMap
     {
-        public static Dictionary<string, GameObject.gAction> map;
+        public static Dictionary<string, GameObject.Action> map;
 
-        static gActionNameMap()
+        static ActionNameMap()
         {
-            map = new Dictionary<string, GameObject.gAction>();
+            map = new Dictionary<string, GameObject.Action>();
         }
 
-        public static GameObject.gAction GetAction(string s)
+        public static GameObject.Action GetAction(string s)
         {
             if (!map.ContainsKey(s))
-                throw new ApplicationException($"gActionNameMap has not got key \"{s}\"");
+                throw new ApplicationException($"ActionNameMap has not got key \"{s}\"");
 
             return map[s];
         }
 
-        public static string GetName(GameObject.gAction action) => map.KeyOf(action);
+        public static string GetName(GameObject.Action action) => map.KeyOf(action);
     }
 
     static class gConditActionNameMap
@@ -46,24 +46,24 @@ namespace WayToEarth.GameLogic
         public static string GetName(GameObject.ActCondition condit) => map.KeyOf(condit);
     }
 
-    static class gInteractionNameMap
+    static class InteractionNameMap
     {
-        public static Dictionary<string, GameObject.gInteraction> map;
+        public static Dictionary<string, GameObject.Interaction> map;
 
-        static gInteractionNameMap()
+        static InteractionNameMap()
         {
-            map = new Dictionary<string, GameObject.gInteraction>();
+            map = new Dictionary<string, GameObject.Interaction>();
         }
 
-        public static GameObject.gInteraction GetInteraction(string s)
+        public static GameObject.Interaction GetInteraction(string s)
         {
             if (!map.ContainsKey(s))
-                throw new ApplicationException($"gInteractionNameMap has not got key \"{s}\"");
+                throw new ApplicationException($"InteractionNameMap has not got key \"{s}\"");
 
             return map[s];
         }
 
-        public static string GetName(GameObject.gInteraction interaction) => map.KeyOf(interaction);
+        public static string GetName(GameObject.Interaction interaction) => map.KeyOf(interaction);
     }
 
     static class gConditInteractionNameMap

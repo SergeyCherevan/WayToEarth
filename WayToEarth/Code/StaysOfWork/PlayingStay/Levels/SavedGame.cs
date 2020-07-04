@@ -233,14 +233,14 @@ namespace WayToEarth.StaysOfWork.Levels
             rocket.phisObj.ActionAlways += RocketBody.JetTransEngineOperation;
             rocket.phisObj.ActionAlways += RocketBody.JetRotatEngineOperation;
 
-            rocket.InteractToCondit.Add(new KeyValuePair<InteractCondition, gInteraction>(Rocket.isCollided, Rocket.Collide));
+            rocket.InteractToCondit.Add(new KeyValuePair<InteractCondition, Interaction>(Rocket.isCollided, Rocket.Collide));
 
 
             fire.ActionAlwaysAfterIntract += ReactiveGases.UpdateIsVisio;
 
             foreach (GameObject go in gameObjects)
             {
-                go.InteractToCondit.Add(new KeyValuePair<InteractCondition, gInteraction>(Collision.isCollided, Collision.ObjectsCollision));
+                go.InteractToCondit.Add(new KeyValuePair<InteractCondition, Interaction>(Collision.isCollided, Collision.ObjectsCollision));
             }
 
             gModel.CollisionTypes.Add(null, null, Collision.CollisionsOfAll);

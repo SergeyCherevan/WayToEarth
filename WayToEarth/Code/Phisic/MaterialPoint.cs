@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Numerics;
-using System.Text;
 using static WayToEarth.Phisic.PhisicalObject;
+using Action = WayToEarth.Phisic.PhisicalObject.Action;
 
 namespace WayToEarth.Phisic
 {
@@ -24,11 +23,11 @@ namespace WayToEarth.Phisic
 
 
 
-        public phInteraction InteractionWithAll { get; set; }
-        public phAction ActionAlways { get; set; }
+        public Interaction InteractionWithAll { get; set; }
+        public Action ActionAlways { get; set; }
 
-        public List<KeyValuePair<InteractCondition, phInteraction>> InteractToCondit { get; set; }
-        public List<KeyValuePair<ActCondition, phAction>> ActToCondit { get; set; }
+        public List<KeyValuePair<InteractCondition, Interaction>> InteractToCondit { get; set; }
+        public List<KeyValuePair<ActCondition, Action>> ActToCondit { get; set; }
 
 
 
