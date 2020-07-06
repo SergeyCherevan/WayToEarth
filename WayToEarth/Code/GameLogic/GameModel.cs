@@ -74,7 +74,7 @@ namespace WayToEarth.GameLogic
             {
                 go1.ActionAlwaysBeforeIntract?.Invoke(go1, timeInSec);
 
-                foreach (var cond in go1.ActToConditBeforeIntract)
+                foreach (var cond in go1.ActToConditBeforeInteract)
                 {
                     if (cond.Key(go1, timeInSec)) cond.Value(go1, timeInSec);
                 }

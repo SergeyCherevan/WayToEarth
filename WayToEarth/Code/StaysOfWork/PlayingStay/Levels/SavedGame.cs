@@ -225,7 +225,7 @@ namespace WayToEarth.StaysOfWork.Levels
 
         public override void SetActionsAndInteractions(List<GameObject> gameObjects)
         {
-            rocket.ActionAlwaysBeforeIntract += Rocket.JetTransEngineOperation;
+            /*rocket.ActionAlwaysBeforeIntract += Rocket.JetTransEngineOperation;
             rocket.ActionAlwaysBeforeIntract += Rocket.JetRotatEngineOperation;
 
             rocket.ActionAlwaysAfterPhisic += Rocket.ResetValueOfEngine;
@@ -233,7 +233,7 @@ namespace WayToEarth.StaysOfWork.Levels
             rocket.phisObj.ActionAlways += RocketBody.JetTransEngineOperation;
             rocket.phisObj.ActionAlways += RocketBody.JetRotatEngineOperation;
 
-            rocket.InteractToCondit.Add(new KeyValuePair<InteractCondition, Interaction>(Rocket.isCollided, Rocket.Collide));
+            rocket.InteractToCondit.Add(new KeyValuePair<InteractCondition, Interaction>(Rocket.RocketIsCollided, Rocket.RocketCollide));
 
 
             fire.ActionAlwaysAfterIntract += ReactiveGases.UpdateIsVisio;
@@ -241,7 +241,7 @@ namespace WayToEarth.StaysOfWork.Levels
             foreach (GameObject go in gameObjects)
             {
                 go.InteractToCondit.Add(new KeyValuePair<InteractCondition, Interaction>(Collision.isCollided, Collision.ObjectsCollision));
-            }
+            }*/
 
             gModel.CollisionTypes.Add(null, null, Collision.CollisionsOfAll);
             gModel.CollisionTypes.Add(typeof(Planet), null, Collision.CollisionWhithPlanet);

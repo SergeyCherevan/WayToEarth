@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using System.Windows;
+using WayToEarth.GameLogic;
 
 namespace WayToEarth.Phisic
 {
@@ -39,6 +40,11 @@ namespace WayToEarth.Phisic
             //MessageBox.Show(Speed.Real + ", " + Speed.Imaginary);
 
             return Speed + m2.speed;
+        }
+
+        static Gravitation()
+        {
+            MethodNameMap<PhisicalObject.Interaction>.AddMethod(GravitationalInteraction);
         }
     }
 }

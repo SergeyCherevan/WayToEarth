@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using WayToEarth.GameLogic;
+using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
@@ -46,9 +47,11 @@ namespace WayToEarth.GameLogic
             return map[s];
         }
 
-        public static string GetName(Method action)
+        public static string GetName(Method method)
         {
-            Delegate[] listOfDelegate = action.GetInvocationList();
+            if (method == null) return "";
+
+            Delegate[] listOfDelegate = method.GetInvocationList();
 
             if (listOfDelegate.Length > 1)
             {
@@ -62,14 +65,71 @@ namespace WayToEarth.GameLogic
                 return String.Join("\n", listOfNames);
             }
 
-            string ret = map.KeyOf(action);
+            string ret = map.KeyOf(method);
 
             if (ret == null)
                 throw new ApplicationException(
-                        $"MethodNameMap<{typeof(Method).Name}> has not got value \"{action.Method}\""
+                        $"MethodNameMap<{typeof(Method).Name}> has not got value \"{method.Method}\""
                     );
 
             return ret;
+        }
+    }
+
+    static class HelpStaticClassForMethodNameMap
+    {
+        public static Method MethodInMap<Method>(this string str)
+            where Method : MulticastDelegate
+        {
+            return MethodNameMap<Method>.GetMethod(str);
+        }
+
+        public static string NameInMap<Method>(this Method method)
+            where Method : MulticastDelegate
+        {
+            return MethodNameMap<Method>.GetName(method);
+        }
+
+        public static
+            List<KeyValuePair<string, string>>
+                MethodsPairsToNamesP<Method1, Method2>(this List<KeyValuePair<Method1, Method2>> methodsPairs)
+                    where Method1 : MulticastDelegate
+                    where Method2 : MulticastDelegate
+        {
+            var retList = new List<KeyValuePair<string, string>>();
+
+            foreach (var pairCondInteract in methodsPairs)
+            {
+                retList.Add(
+                        new KeyValuePair<string, string>(
+                                pairCondInteract.Key.NameInMap(),
+                                pairCondInteract.Value.NameInMap()
+                            )
+                    );
+            }
+
+            return retList;
+        }
+
+        public static
+            List<KeyValuePair<Method1, Method2>>
+                NamesPairsToMethodsP<Method1, Method2>(this List<KeyValuePair<string, string>> stringsPairs)
+                    where Method1 : MulticastDelegate
+                    where Method2 : MulticastDelegate
+        {
+            var retList = new List<KeyValuePair<Method1, Method2>>();
+
+            foreach (var pairCondInteract in stringsPairs)
+            {
+                retList.Add(
+                        new KeyValuePair<Method1, Method2>(
+                                pairCondInteract.Key.MethodInMap<Method1>(),
+                                pairCondInteract.Value.MethodInMap<Method2>()
+                            )
+                    );
+            }
+
+            return retList;
         }
     }
 }

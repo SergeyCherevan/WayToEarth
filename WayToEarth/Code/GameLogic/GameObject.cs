@@ -63,32 +63,88 @@ namespace WayToEarth.GameLogic
         public delegate bool ActCondition(GameObject go, double timeInSec);
 
         [JsonIgnore]
-        public virtual Interaction InteractionWithAll { get; set; }
+        public Interaction InteractionWithAll;
         [JsonIgnore]
-        public virtual Action ActionAlwaysBeforeIntract { get; set; }
+        public Action ActionAlwaysBeforeIntract;
         [JsonIgnore]
-        public virtual Action ActionAlwaysAfterIntract { get; set; }
+        public Action ActionAlwaysAfterIntract;
         [JsonIgnore]
-        public virtual Action ActionAlwaysAfterPhisic { get; set; }
+        public Action ActionAlwaysAfterPhisic;
 
         [JsonIgnore]
-        public virtual List<KeyValuePair<InteractCondition, Interaction>> InteractToCondit { get; set; }
+        public List<KeyValuePair<InteractCondition, Interaction>> InteractToCondit;
         [JsonIgnore]
-        public virtual List<KeyValuePair<ActCondition, Action>> ActToConditBeforeIntract { get; set; }
+        public List<KeyValuePair<ActCondition, Action>> ActToConditBeforeInteract;
         [JsonIgnore]
-        public virtual List<KeyValuePair<ActCondition, Action>> ActToConditAfterIntract { get; set; }
+        public List<KeyValuePair<ActCondition, Action>> ActToConditAfterIntract;
         [JsonIgnore]
-        public virtual List<KeyValuePair<ActCondition, Action>> ActToConditAfterPhisic { get; set; }
+        public List<KeyValuePair<ActCondition, Action>> ActToConditAfterPhisic;
 
-        public virtual string strInteractionWithAll { get; set; }
-        public virtual string strActionAlwaysBeforeIntract { get; set; }
-        public virtual string strActionAlwaysAfterIntract { get; set; }
-        public virtual string strActionAlwaysAfterPhisic { get; set; }
+        public virtual string strInteractionWithAll
+        {
+            get => InteractionWithAll.NameInMap();
+            set { InteractionWithAll = value.MethodInMap<GameObject.Interaction>(); }
+        }
+        public virtual string strActionAlwaysBeforeIntract
+        {
+            get => ActionAlwaysBeforeIntract.NameInMap();
+            set { ActionAlwaysBeforeIntract = value.MethodInMap<GameObject.Action>(); }
+        }
+        public virtual string strActionAlwaysAfterIntract
+        {
+            get => ActionAlwaysAfterIntract.NameInMap();
+            set { ActionAlwaysAfterIntract = value.MethodInMap<GameObject.Action>(); }
+        }
+        public virtual string strActionAlwaysAfterPhisic
+        {
+            get => ActionAlwaysAfterPhisic.NameInMap();
+            set { ActionAlwaysAfterPhisic = value.MethodInMap<GameObject.Action>(); }
+        }
 
-        public virtual List<KeyValuePair<string, string>> strInteractToCondit { get; set; }
-        public virtual List<KeyValuePair<string, string>> strActToConditBeforeIntract { get; set; }
-        public virtual List<KeyValuePair<string, string>> strActToConditAfterIntract { get; set; }
-        public virtual List<KeyValuePair<string, string>> strActToConditAfterPhisic { get; set; }
+        public virtual List<KeyValuePair<string, string>> strInteractToCondit
+        {
+            get => InteractToCondit.MethodsPairsToNamesP();
+            set
+            {
+                InteractToCondit = value.NamesPairsToMethodsP<
+                        GameObject.InteractCondition,
+                        GameObject.Interaction
+                    >();
+            }
+        }
+        public virtual List<KeyValuePair<string, string>> strActToConditBeforeIntract
+        {
+            get => ActToConditBeforeInteract.MethodsPairsToNamesP();
+            set
+            {
+                ActToConditBeforeInteract = value.NamesPairsToMethodsP<
+                        GameObject.ActCondition,
+                        GameObject.Action
+                    >();
+            }
+        }
+        public virtual List<KeyValuePair<string, string>> strActToConditAfterIntract
+        {
+            get => ActToConditAfterIntract.MethodsPairsToNamesP();
+            set
+            {
+                ActToConditAfterIntract = value.NamesPairsToMethodsP<
+                        GameObject.ActCondition,
+                        GameObject.Action
+                    >();
+            }
+        }
+        public virtual List<KeyValuePair<string, string>> strActToConditAfterPhisic
+        {
+            get => ActToConditAfterPhisic.MethodsPairsToNamesP();
+            set
+            {
+                ActToConditAfterPhisic = value.NamesPairsToMethodsP<
+                        GameObject.ActCondition,
+                        GameObject.Action
+                    >();
+            }
+        }
 
         public GameObject()
         {
@@ -114,7 +170,7 @@ namespace WayToEarth.GameLogic
 
             o.InteractToCondit = new List<KeyValuePair<InteractCondition, Interaction>>();
 
-            o.ActToConditBeforeIntract = new List<KeyValuePair<ActCondition, Action>>();
+            o.ActToConditBeforeInteract = new List<KeyValuePair<ActCondition, Action>>();
             o.ActToConditAfterIntract = new List<KeyValuePair<ActCondition, Action>>();
             o.ActToConditAfterPhisic = new List<KeyValuePair<ActCondition, Action>>();
         }

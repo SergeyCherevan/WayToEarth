@@ -39,9 +39,16 @@ namespace WayToEarth
 
         public static void Start()
         {
-            MainWindow.window.Grid.Focus();
+            try
+            {
+                MainWindow.window.Grid.Focus();
 
-            SetStaysValue();
+                SetStaysValue();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
+            } 
         }
 
         public static void IterationOfProgramCycle(object sender, EventArgs ea)
@@ -67,6 +74,11 @@ namespace WayToEarth
 
 
                         case WayToSetNewStay.Pause:
+
+                            MessageBox.Show(
+                                    (currently as PlayingStay).rocket.phisObj.ActionAlways.NameInMap()
+                                );
+
                             (setOfStay[WayToSetNewStay.Pause] as PauseStay).SetResultOfPlaying(currently as PlayingStay);
 
                             currently = setOfStay[WayToSetNewStay.Pause];
@@ -96,7 +108,7 @@ namespace WayToEarth
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString(), "Exception",MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(e.ToString(), "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -134,7 +146,7 @@ namespace WayToEarth
 
         public static TKey KeyOf<TKey, TValue>(this Dictionary<TKey, TValue> dic, TValue val)
         {
-            return dic.FirstOrDefault(x => x.Value.Equals(val)).Key;
+            return dic.FirstOrDefault(x => Object.Equals(x.Value, val)).Key;
         }
     }
 }

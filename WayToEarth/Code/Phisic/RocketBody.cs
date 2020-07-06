@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using System.Windows;
+using WayToEarth.GameLogic;
 
 namespace WayToEarth.Phisic
 {
@@ -62,6 +63,12 @@ namespace WayToEarth.Phisic
             rocket.AddMomentOfImpulse(
                     rocket.dMomentumPerSecond * (int)rocket.rotationEngine
                 );
+        }
+
+        static RocketBody()
+        {
+            MethodNameMap<PhisicalObject.Action>.AddMethod(JetRotatEngineOperation);
+            MethodNameMap<PhisicalObject.Action>.AddMethod(JetTransEngineOperation);
         }
     }
 }

@@ -128,7 +128,7 @@ namespace WayToEarth.StaysOfWork.Levels
             rocket.phisObj.ActionAlways += RocketBody.JetTransEngineOperation;
             rocket.phisObj.ActionAlways += RocketBody.JetRotatEngineOperation;
 
-            rocket.InteractToCondit.Add(new KeyValuePair<InteractCondition, Interaction>(Rocket.isCollided, Rocket.Collide));
+            rocket.InteractToCondit.Add(new KeyValuePair<InteractCondition, Interaction>(Rocket.RocketIsCollided, Rocket.RocketCollide));
 
 
             fire.ActionAlwaysAfterIntract += ReactiveGases.UpdateIsVisio;

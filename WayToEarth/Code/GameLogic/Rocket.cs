@@ -77,7 +77,7 @@ namespace WayToEarth.GameLogic
         }
 
 
-        public static bool isCollided(GameObject go1, GameObject go2, double timeInSec)
+        public static bool RocketIsCollided(GameObject go1, GameObject go2, double timeInSec)
         {
             if (go1 is Rocket)
             {
@@ -94,9 +94,20 @@ namespace WayToEarth.GameLogic
 
         }
 
-        static public void Collide(GameObject rocket, GameObject o, double timeInSecond)
+        static public void RocketCollide(GameObject rocket, GameObject o, double timeInSecond)
         {
             GameModel.Loose(rocket, timeInSecond);
+        }
+
+        static Rocket()
+        {
+            MethodNameMap<GameObject.Action>.AddMethod(JetRotatEngineOperation);
+            MethodNameMap<GameObject.Action>.AddMethod(JetTransEngineOperation);
+            MethodNameMap<GameObject.Action>.AddMethod(ResetValueOfEngine);
+
+            MethodNameMap<GameObject.InteractCondition>.AddMethod(RocketIsCollided);
+
+            MethodNameMap<GameObject.Interaction>.AddMethod(RocketCollide);
         }
     }
 }

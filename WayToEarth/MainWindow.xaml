@@ -111,7 +111,8 @@
                 </Image.RenderTransform>
             </Image>
 
-            <Image x:Name="Rocket" Source="/Rocket.png" Width="60" Height="97.5" IsEnabled="False" RenderTransformOrigin="0.5, 0.5" Stretch="Fill">
+            <Image x:Name="Rocket" Source="/Rocket.png" Width="60" Height="97.5" IsEnabled="False" RenderTransformOrigin="0.5, 0.5" Stretch="Fill"
+                   Canvas.Left="-600" Canvas.Top="-98">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -136,7 +137,8 @@
             </Image>
 
 
-            <Image x:Name="Fire" Height="125" Width="50" IsEnabled="False" Source="/Fire.png" Stretch="Fill" OpacityMask="Red" RenderTransformOrigin="0.5, 0.5">
+            <Image x:Name="Fire" Height="125" Width="50" IsEnabled="False" Source="/Fire.png" Stretch="Fill" OpacityMask="Red" RenderTransformOrigin="0.5, 0.5"
+                   Canvas.Left="-125" Canvas.Top="-50">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <RotateTransform Angle="0"/>
