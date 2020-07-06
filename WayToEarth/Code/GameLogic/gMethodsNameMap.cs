@@ -14,6 +14,8 @@ namespace WayToEarth.GameLogic
         static gActionNameMap()
         {
             map = new Dictionary<string, GameObject.Action>();
+
+            map.Add("", null);
         }
 
         public static void AddMethod(GameObject.Action action)
@@ -23,6 +25,18 @@ namespace WayToEarth.GameLogic
 
         public static GameObject.Action GetMethod(string s)
         {
+            string[] strList = s.Split("\n");
+
+            if (strList.Length > 1)
+            {
+                GameObject.Action ret = null;
+
+                foreach (string str in strList)
+                {
+                    ret += GetMethod(str);
+                }
+            }
+
             if (!map.ContainsKey(s))
                 throw new ApplicationException($"gActionNameMap has not got key \"{s}\"");
 
@@ -80,6 +94,20 @@ namespace WayToEarth.GameLogic
 
         public static string GetName(GameObject.ActCondition condit)
         {
+            Delegate[] listOfDelegate = condit.GetInvocationList();
+
+            if (listOfDelegate.Length > 1)
+            {
+                List<string> listOfNames = new List<string>();
+
+                foreach (var deleg in listOfDelegate)
+                {
+                    listOfNames.Add(GetName(deleg as GameObject.ActCondition));
+                }
+
+                return String.Join("\n", listOfNames);
+            }
+
             var ret = map.KeyOf(condit);
 
             if (ret == null)
@@ -115,6 +143,20 @@ namespace WayToEarth.GameLogic
 
         public static string GetName(GameObject.Interaction interaction)
         {
+            Delegate[] listOfDelegate = interaction.GetInvocationList();
+
+            if (listOfDelegate.Length > 1)
+            {
+                List<string> listOfNames = new List<string>();
+
+                foreach (var deleg in listOfDelegate)
+                {
+                    listOfNames.Add(GetName(deleg as GameObject.Interaction));
+                }
+
+                return String.Join("\n", listOfNames);
+            }
+
             var ret = map.KeyOf(interaction);
 
             if (ret == null)
@@ -150,6 +192,20 @@ namespace WayToEarth.GameLogic
 
         public static string GetName(GameObject.InteractCondition condit)
         {
+            Delegate[] listOfDelegate = condit.GetInvocationList();
+
+            if (listOfDelegate.Length > 1)
+            {
+                List<string> listOfNames = new List<string>();
+
+                foreach (var deleg in listOfDelegate)
+                {
+                    listOfNames.Add(GetName(deleg as GameObject.InteractCondition));
+                }
+
+                return String.Join("\n", listOfNames);
+            }
+
             var ret = map.KeyOf(condit);
 
             if (ret == null)
