@@ -83,13 +83,13 @@ namespace WayToEarth.GameLogic
             {
                 if (go2 is VisioObject || !go2.isValid) return false;
 
-                return Complex.Abs(go1.Coord - go2.Coord) < go1.Radius + go2.Radius;
+                return (go1.Coord - go2.Coord).polarR < go1.Radius + go2.Radius;
             }
             else
             {
                 if (go1 is VisioObject || !go1.isValid) return false;
 
-                return Complex.Abs(go1.Coord - go2.Coord) < go1.Radius + go2.Radius;
+                return (go1.Coord - go2.Coord).polarR < go1.Radius + go2.Radius;
             }
 
         }
@@ -97,17 +97,6 @@ namespace WayToEarth.GameLogic
         static public void RocketCollide(GameObject rocket, GameObject o, double timeInSecond)
         {
             GameModel.Loose(rocket, timeInSecond);
-        }
-
-        static Rocket()
-        {
-            MethodNameMap<GameObject.Action>.AddMethod(JetRotatEngineOperation);
-            MethodNameMap<GameObject.Action>.AddMethod(JetTransEngineOperation);
-            MethodNameMap<GameObject.Action>.AddMethod(ResetValueOfEngine);
-
-            MethodNameMap<GameObject.InteractCondition>.AddMethod(RocketIsCollided);
-
-            MethodNameMap<GameObject.Interaction>.AddMethod(RocketCollide);
         }
     }
 }

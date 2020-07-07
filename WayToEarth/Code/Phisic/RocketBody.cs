@@ -32,7 +32,18 @@ namespace WayToEarth.Phisic
 
 
 
-        public RocketBody()
+        public RocketBody() : base()
+        {
+            translationEngine = 0;
+            rotationEngine = 0;
+
+            dImpulsPerSecond = 15;
+            dMomentumPerSecond = Math.PI / 20;
+        }
+
+
+
+        public RocketBody(MaterialPoint mp, RotatCharacter rc) : base(mp, rc)
         {
             translationEngine = 0;
             rotationEngine = 0;
@@ -48,7 +59,7 @@ namespace WayToEarth.Phisic
 
             RocketBody rocket = (RocketBody)o;
 
-            Complex dp = Complex.FromPolarCoordinates(
+            Coord dp = Coord.FromPolar(
                     rocket.dImpulsPerSecond * (int)rocket.translationEngine,
                     rocket.angle
                 );
@@ -63,12 +74,6 @@ namespace WayToEarth.Phisic
             rocket.AddMomentOfImpulse(
                     rocket.dMomentumPerSecond * (int)rocket.rotationEngine
                 );
-        }
-
-        static RocketBody()
-        {
-            MethodNameMap<PhisicalObject.Action>.AddMethod(JetRotatEngineOperation);
-            MethodNameMap<PhisicalObject.Action>.AddMethod(JetTransEngineOperation);
         }
     }
 }

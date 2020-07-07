@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using System.Windows;
+using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
@@ -22,11 +23,7 @@ namespace WayToEarth.GameLogic
             rocket = R;
         }
 
-        public override Complex Coord { get { return rocket?.Coord ?? 0; } set { } }
-
-        public override double X { get { return rocket?.X ?? 0; } set { } }
-
-        public override double Y { get { return rocket?.Y ?? 0; } set { } }
+        public override Coord Coord { get { return rocket?.Coord ?? new Coord(); } set { } }
 
         public override double Angle { get { return rocket?.Angle ?? 0; } set { } }
 
@@ -35,11 +32,6 @@ namespace WayToEarth.GameLogic
             ReactiveGases fire = (ReactiveGases)f;
 
             fire.isVisible = (fire.rocket.translationEngine != Rocket.TranslationEngine.Off && fire.rocket.isValid);
-        }
-
-        static ReactiveGases()
-        {
-            MethodNameMap<GameObject.Action>.AddMethod(UpdateIsVisio);
         }
     }
 }

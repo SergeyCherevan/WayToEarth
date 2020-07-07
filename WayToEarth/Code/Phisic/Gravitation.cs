@@ -11,10 +11,10 @@ namespace WayToEarth.Phisic
     {
         public static double GravityConst = 6.67 * Math.Pow(10, -11);
 
-        public static Complex NewtonForce(PhisicalObject m1, PhisicalObject m2)
+        public static Coord NewtonForce(PhisicalObject m1, PhisicalObject m2)
         {
             return GravityConst * m1.mass * m2.mass /
-                Math.Pow(Complex.Abs(m2.coord - m1.coord), 3)
+                Math.Pow((m2.coord - m1.coord).polarR, 3)
                                                                 * (m2.coord - m1.coord);
         }
 
@@ -23,28 +23,21 @@ namespace WayToEarth.Phisic
             m1.ActForce(Gravitation.NewtonForce(m1, m2), timeInSec);
         }
 
-        public static Complex CosmicSpeeds(PhisicalObject m1, PhisicalObject m2, int number)
+        public static Coord CosmicSpeeds(PhisicalObject m1, PhisicalObject m2, int number)
         {
             double V = Math.Sqrt(
                 Math.Abs(number) *
                                 GravityConst * m2.mass /
-                                Complex.Abs(m2.coord - m1.coord)
+                                (m2.coord - m1.coord).polarR
                 );
 
 
-            Complex Speed = Complex.FromPolarCoordinates(
+            Coord Speed = Coord.FromPolar(
                     V * number / Math.Abs(number),
-                    (m2.coord - m1.coord).Phase - Math.PI/2
+                    (m2.coord - m1.coord).polarAngle - Math.PI/2
                 );
-
-            //MessageBox.Show(Speed.Real + ", " + Speed.Imaginary);
 
             return Speed + m2.speed;
-        }
-
-        static Gravitation()
-        {
-            MethodNameMap<PhisicalObject.Interaction>.AddMethod(GravitationalInteraction);
         }
     }
 }

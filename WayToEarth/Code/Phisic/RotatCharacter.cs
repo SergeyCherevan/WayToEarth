@@ -1,15 +1,38 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+using static WayToEarth.Phisic.PhisicalObject;
+using Action = WayToEarth.Phisic.PhisicalObject.Action;
 
 namespace WayToEarth.Phisic
 {
-    class RotatCharacter
+    class RotatCharacter : PhisicalObject
     {
-        public double angle;
-        public double angulVel;
-        public double inertMoment;
+        public RotatCharacter rc
+        {
+            get => this;
+            set
+            {
+                angle = value.angle;
+                angulVel = value.angulVel;
+                inertMoment = value.inertMoment;
+            }
+        }
+
+        public double angle { get; set; }
+        public double angulVel { get; set; }
+        public double inertMoment { get; set; }
+
+
+
+        [JsonIgnore]
+        public Interaction InteractionWithAll { get; set; }
+        [JsonIgnore]
+        public Action ActionAlways { get; set; }
+
+        [JsonIgnore]
+        public List<KeyValuePair<InteractCondition, Interaction>> InteractToCondit { get; set; }
+        [JsonIgnore]
+        public List<KeyValuePair<ActCondition, Action>> ActToCondit { get; set; }
 
 
         public RotatCharacter()

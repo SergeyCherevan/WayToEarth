@@ -15,7 +15,7 @@ namespace WayToEarth.GameLogic
             if (go1 is VisioObject || go2 is VisioObject ||
                 !go1.isValid || !go2.isValid) return false;
 
-            return Complex.Abs(go1.Coord - go2.Coord) < go1.Radius + go2.Radius;
+            return (go1.Coord - go2.Coord).polarR < go1.Radius + go2.Radius;
         }
 
         public static void ObjectsCollision(GameObject go1, GameObject go2, double timeInSec)
@@ -77,16 +77,6 @@ namespace WayToEarth.GameLogic
 
             bang.X = rocket.X;
             bang.Y = rocket.Y;
-        }
-
-        static Collision()
-        {
-            MethodNameMap<GameObject.InteractCondition>.AddMethod(isCollided);
-
-            MethodNameMap<GameObject.Interaction>.AddMethod(ObjectsCollision);
-            MethodNameMap<GameObject.Interaction>.AddMethod(CollisionsOfAll);
-            MethodNameMap<GameObject.Interaction>.AddMethod(CollisionWhithPlanet);
-            MethodNameMap<GameObject.Interaction>.AddMethod(CollisionOfPlanetWhithRocket);
         }
     }
 }

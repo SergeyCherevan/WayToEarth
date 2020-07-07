@@ -8,12 +8,12 @@ using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
-    static class MethodNameMap<Method>
+    class MethodNameMap<Method>
         where Method : MulticastDelegate
     {
         public static Dictionary<string, Method> map;
 
-        static MethodNameMap()
+        public static void Start()
         {
             map = new Dictionary<string, Method>();
 

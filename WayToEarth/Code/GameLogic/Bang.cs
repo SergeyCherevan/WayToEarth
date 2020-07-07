@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WayToEarth.GameLogic;
+﻿using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
@@ -12,6 +9,8 @@ namespace WayToEarth.GameLogic
         public Bang() : base()
         {
             isVisible = true;
+
+            Coord = new Coord();
 
             Time = 10;
 
@@ -30,11 +29,6 @@ namespace WayToEarth.GameLogic
 
                 bang.isVisible = false;
             }
-        }
-
-        static Bang()
-        {
-            MethodNameMap<GameObject.Action>.AddMethod(Burning);
         }
     }
 }

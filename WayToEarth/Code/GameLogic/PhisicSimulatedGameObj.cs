@@ -6,16 +6,16 @@ using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
-    public class PhisicSimulatedGameObj : GameObject
+    class PhisicSimulatedGameObj : GameObject
     {
 
         public PhisicalObject phisObj;
 
-        override public Complex Coord { get { return phisObj.coord; } set { phisObj.coord = value; } }
+        override public Coord Coord { get { return phisObj.coord; } set { phisObj.coord = value; } }
 
-        override public double X { get { return phisObj.x; } set { phisObj.x = value; } }
+        /*override public double X { get { return phisObj.x; } set { phisObj.x = value; } }
 
-        override public double Y { get { return phisObj.y; } set { phisObj.y = value; } }
+        override public double Y { get { return phisObj.y; } set { phisObj.y = value; } }*/
 
         override public double Angle
         {

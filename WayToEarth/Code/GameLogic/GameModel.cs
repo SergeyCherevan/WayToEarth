@@ -11,7 +11,7 @@ using WayToEarth.StaysOfWork;
 
 namespace WayToEarth.GameLogic
 {
-    public class GameModel
+    class GameModel
     {
         public List<GameObject> gObjects { get; set; }
 
@@ -165,12 +165,6 @@ namespace WayToEarth.GameLogic
             PlayingResult result = new PlayingResult(false, 0);
 
             MainProgramWork.currently.logicMessageTurn.push(Message.GameOver, result);
-        }
-
-        static GameModel()
-        {
-            MethodNameMap<GameObject.Action>.AddMethod(Win);
-            MethodNameMap<GameObject.Action>.AddMethod(Loose);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using System.Windows;
+using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
@@ -32,11 +33,7 @@ namespace WayToEarth.GameLogic
             ActToConditAfterIntract.Add(new KeyValuePair<ActCondition, Action>(WentAbroad, GameModel.Win));
         }
 
-        public override Complex Coord { get { return planet?.Coord ?? 0; } set { } }
-
-        public override double X { get { return planet?.X ?? 0; } set { } }
-
-        public override double Y { get { return planet?.Y ?? 0; } set { } }
+        public override Coord Coord { get { return planet?.Coord ?? new Coord(); } set { } }
 
         public override double Angle { get { return 0; } set { } }
 
@@ -48,12 +45,7 @@ namespace WayToEarth.GameLogic
         {
             PlayingBorder border = (PlayingBorder)go;
 
-            return Complex.Abs(border.Coord - border.rocket.Coord) >= border.Radius;
-        }
-
-        static PlayingBorder()
-        {
-            MethodNameMap<GameObject.ActCondition>.AddMethod(WentAbroad);
+            return (border.Coord - border.rocket.Coord).polarR >= border.Radius;
         }
     }
 }

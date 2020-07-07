@@ -8,24 +8,13 @@ using WayToEarth.GameLogic;
 
 namespace WayToEarth
 {
-    static class ImageNameMap
+    class ImageNameMap
     {
         public static Dictionary<string, Image> map;
 
-        static ImageNameMap()
+        public static void Start()
         {
             map = new Dictionary<string, Image>();
-
-            AddImage(MainWindow.window.Border);
-            AddImage(MainWindow.window.Planet);
-            AddImage(MainWindow.window.SmallPlanet);
-            AddImage(MainWindow.window.CenterStar);
-            AddImage(MainWindow.window.Rocket);
-            AddImage(MainWindow.window.Meteor);
-            AddImage(MainWindow.window.Fire);
-            AddImage(MainWindow.window.Bang);
-            AddImage(MainWindow.window.BigBang);
-            AddImage(MainWindow.window.LargeBang);
         }
 
         public static void AddImage(Image image)

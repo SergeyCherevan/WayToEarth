@@ -5,13 +5,13 @@ using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
-    public class Meteor : PhisicSimulatedGameObj
+    class Meteor : PhisicSimulatedGameObj
     {
         override public double Angle
         {
             get
             {
-                return phisObj.speed.Phase / Math.PI * 180;
+                return phisObj.speed.polarAngle / Math.PI * 180;
             }
             set { }
         }

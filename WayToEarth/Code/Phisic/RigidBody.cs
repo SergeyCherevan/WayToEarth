@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using WayToEarth.GameLogic;
 using WayToEarth.Phisic;
 using static WayToEarth.Phisic.PhisicalObject;
 using Action = WayToEarth.Phisic.PhisicalObject.Action;
@@ -8,37 +9,83 @@ namespace WayToEarth
 {
     class RigidBody : PhisicalObject
     {
-        public MaterialPoint mp;
+        public MaterialPoint mp { get; set; }
+        public RotatCharacter rc { get; set; }
 
-        public RotatCharacter rc;
+        public Coord coord { get => mp.coord; set { mp.coord = value; } }
+        public Coord speed { get => mp.speed; set { mp.speed = value; } }
+        public double mass { get => mp.mass; set { mp.mass = value; } }
 
-        public Complex coord { get { return mp.coord; } set { mp.coord = value; } }
-        public Complex speed { get { return mp.speed; } set { mp.speed = value; } }
-        public double mass { get { return mp.mass; } set { mp.mass = value; } }
+        double x { get => coord.x; set { coord.x = value; } }
+        double y { get => coord.y; set { coord.y = value; } }
+        double Vx { get => speed.x; set { speed.x = value; } }
+        double Vy { get => speed.y; set { speed.y = value; } }
 
-        public double angle { get { return rc.angle; } set { rc.angle = value; } }
-        public double angulVel { get { return rc.angulVel; } set { rc.angulVel = value; } }
-        public double inertMoment { get { return rc.inertMoment; } set { rc.inertMoment = value; } }
-
-        public double x { get { return mp.x; } set { mp.x = value; } }
-        public double y { get { return mp.y; } set { mp.y = value; } }
-        public double Vx { get { return mp.Vx; } set { mp.Vx = value; } }
-        public double Vy { get { return mp.Vy; } set { mp.Vy = value; } }
-
+        public double angle { get => rc.angle; set { rc.angle = value; } }
+        public double angulVel { get => rc.angulVel; set { rc.angulVel = value; } }
+        public double inertMoment { get => rc.inertMoment; set { rc.inertMoment = value; } }
 
 
+
+        [JsonIgnore]
         public Interaction InteractionWithAll { get; set; }
+        [JsonIgnore]
         public Action ActionAlways { get; set; }
 
+        [JsonIgnore]
         public List<KeyValuePair<InteractCondition, Interaction>> InteractToCondit { get; set; }
+        [JsonIgnore]
         public List<KeyValuePair<ActCondition, Action>> ActToCondit { get; set; }
 
+
+
+        public string strInteractionWithAll
+        {
+            get => InteractionWithAll.NameInMap();
+            set { InteractionWithAll = value.MethodInMap<PhisicalObject.Interaction>(); }
+        }
+        public string strActionAlways
+        {
+            get => ActionAlways.NameInMap();
+            set { ActionAlways = value.MethodInMap<PhisicalObject.Action>(); }
+        }
+
+        public List<KeyValuePair<string, string>> strInteractToCondit
+        {
+            get => InteractToCondit.MethodsPairsToNamesP();
+            set
+            {
+                InteractToCondit = value.NamesPairsToMethodsP<
+                        PhisicalObject.InteractCondition,
+                        PhisicalObject.Interaction
+                    >();
+            }
+        }
+        public List<KeyValuePair<string, string>> strActToCondit
+        {
+            get => ActToCondit.MethodsPairsToNamesP();
+            set
+            {
+                ActToCondit = value.NamesPairsToMethodsP<
+                        PhisicalObject.ActCondition,
+                        PhisicalObject.Action
+                    >();
+            }
+        }
 
 
         public RigidBody()
         {
             mp = new MaterialPoint();
             rc = new RotatCharacter();
+
+            NullPhDelegate.SetPhDelegateValue(this);
+        }
+
+        public RigidBody(MaterialPoint MP, RotatCharacter RC)
+        {
+            mp = MP;
+            rc = RC;
 
             NullPhDelegate.SetPhDelegateValue(this);
         }
@@ -52,19 +99,19 @@ namespace WayToEarth
             return this;
         }
 
-        public PhisicalObject AddLinearAcceleration(Complex a, double timeInSec)
+        public PhisicalObject AddLinearAcceleration(Coord a, double timeInSec)
         {
             mp.AddLinearAcceleration(a, timeInSec);
             return this;
         }
 
-        public PhisicalObject ActForce(Complex F, double timeInSec)
+        public PhisicalObject ActForce(Coord F, double timeInSec)
         {
             mp.ActForce(F, timeInSec);
             return this;
         }
 
-        public PhisicalObject AddImpulse(Complex p)
+        public PhisicalObject AddImpulse(Coord p)
         {
             mp.AddImpulse(p);
             return this;

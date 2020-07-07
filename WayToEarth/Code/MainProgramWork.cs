@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Collections;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Controls;
-using System.Reflection;
 using WayToEarth.StaysOfWork;
 using WayToEarth.StaysOfWork.Levels;
 using System.Linq;
 using WayToEarth.GameLogic;
+using Newtonsoft.Json;
+using WayToEarth.Code;
+using WayToEarth.Phisic;
 
 namespace WayToEarth
 {
@@ -43,6 +42,8 @@ namespace WayToEarth
             {
                 MainWindow.window.Grid.Focus();
 
+                SetValueOfStaticMaps();
+
                 SetStaysValue();
             }
             catch (Exception e)
@@ -75,9 +76,12 @@ namespace WayToEarth
 
                         case WayToSetNewStay.Pause:
 
-                            MessageBox.Show(
-                                    (currently as PlayingStay).rocket.phisObj.ActionAlways.NameInMap()
-                                );
+                            var obj = (currently as PlayingStay).rocket.InteractToCondit.MethodsPairsToNamesP();
+
+                            /*MessageBox.Show(
+                                    System.Text.Json.JsonSerializer.Serialize(obj, obj.GetType(), 
+                                        new System.Text.Json.JsonSerializerOptions() { WriteIndented = true })
+                                );*/
 
                             (setOfStay[WayToSetNewStay.Pause] as PauseStay).SetResultOfPlaying(currently as PlayingStay);
 
@@ -137,6 +141,27 @@ namespace WayToEarth
             setOfStay[WayToSetNewStay.GameOver] = new GameOverStay();
 
             currently.Set();
+        }
+
+        static void SetValueOfStaticMaps()
+        {
+            StarterNameMap.Start(new ImageNameMap());
+
+            StarterNameMap.Start(new MethodNameMap<GameObject.Action>());
+
+            StarterNameMap.Start(new MethodNameMap<GameObject.Interaction>());
+
+            StarterNameMap.Start(new MethodNameMap<GameObject.ActCondition>());
+
+            StarterNameMap.Start(new MethodNameMap<GameObject.InteractCondition>());
+
+            StarterNameMap.Start(new MethodNameMap<PhisicalObject.Action>());
+
+            StarterNameMap.Start(new MethodNameMap<PhisicalObject.Interaction>());
+
+            StarterNameMap.Start(new MethodNameMap<PhisicalObject.ActCondition>());
+
+            StarterNameMap.Start(new MethodNameMap<PhisicalObject.InteractCondition>());
         }
 
         public static void ProgramKeyDown(object sender, KeyEventArgs eventArgs)

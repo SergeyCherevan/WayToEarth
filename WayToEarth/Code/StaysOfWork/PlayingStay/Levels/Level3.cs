@@ -43,7 +43,7 @@ namespace WayToEarth.StaysOfWork.Levels
                 MainWindow.window.PlayingCanvas.Children.Add(planets[i].image);
 
                 planets[i].phisObj.mass = centerPlanet.phisObj.mass / 100;
-                planets[i].phisObj.coord = centerPlanet.phisObj.coord + Complex.FromPolarCoordinates(500 + 400, 2 * Math.PI / countOfPlanets * i);
+                planets[i].phisObj.coord = centerPlanet.phisObj.coord + Coord.FromPolar(500 + 400, 2 * Math.PI / countOfPlanets * i);
                 planets[i].phisObj.speed = Gravitation.CosmicSpeeds(planets[i].phisObj, centerPlanet.phisObj, 1);
             }
 
@@ -98,9 +98,9 @@ namespace WayToEarth.StaysOfWork.Levels
                 MainWindow.window.PlayingCanvas.Children.Add(meteors[i].image);
 
 
-                double rOrbitrocket = Complex.Abs(rocket.phisObj.coord - centerPlanet.phisObj.coord);
+                double rOrbitrocket = (rocket.phisObj.coord - centerPlanet.phisObj.coord).polarR;
 
-                Complex coord = Complex.FromPolarCoordinates(
+                Coord coord = Coord.FromPolar(
                         r.Next(
                             (int)rOrbitrocket + 150,
                             (int)rOrbitrocket + 1500
@@ -112,7 +112,7 @@ namespace WayToEarth.StaysOfWork.Levels
 
                 int dirOfRotat = r.NextDouble() < 0.5 ? 1 : -1;
 
-                (meteors[i] as Meteor).phisObj.speed = Gravitation.CosmicSpeeds((meteors[i] as Meteor).phisObj, centerPlanet.phisObj, dirOfRotat) + (r.NextDouble() - 0.5) * 2;
+                (meteors[i] as Meteor).phisObj.speed = Gravitation.CosmicSpeeds((meteors[i] as Meteor).phisObj, centerPlanet.phisObj, dirOfRotat) + new Coord((r.NextDouble() - 0.5) * 2, 0);
             }
 
             return meteors;

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.Windows.Controls;
+using WayToEarth.Phisic;
 using static WayToEarth.GameLogic.GameObject;
 
 namespace WayToEarth.GameLogic
 {
-    public class GameObject
+    class GameObject
     {
         virtual public bool isValid { get; set; }
 
@@ -22,28 +23,33 @@ namespace WayToEarth.GameLogic
             set { image = ImageNameMap.GetImage(value); }
         }
 
-        virtual public Complex Coord { get; set; }
+        virtual public Coord Coord { get; set; }
 
-        virtual public double X {
-            get 
-            {
-                return Coord.Real;
-            }
-            set 
-            {
-                Coord = new Complex(value, Coord.Imaginary);
-            } 
-        }
-
-        virtual public double Y
+        public double X
         {
             get
             {
-                return Coord.Imaginary;
+                GameObject go = this;
+                return go.Coord.x;
             }
             set
             {
-                Coord = new Complex(Coord.Real, value);
+                GameObject go = this;
+                go.Coord.x = value;
+            }
+        }
+
+        public double Y
+        {
+            get
+            {
+                GameObject go = this;
+                return go.Coord.y;
+            }
+            set
+            {
+                GameObject go = this;
+                go.Coord.y = value;
             }
         }
 
@@ -51,8 +57,8 @@ namespace WayToEarth.GameLogic
 
         virtual public double Width { get { return image?.ActualWidth ?? 0; } }
         virtual public double Height { get { return image?.ActualHeight ?? 0; } }
-        virtual public Complex Size { get { return new Complex(Width, Height); } }
-        virtual public double Radius { get { return Complex.Abs(Size) / 2; } }
+        virtual public Coord Size { get { return new Coord(Width, Height); } }
+        virtual public double Radius { get { return Size.polarR / 2; } }
 
         virtual public bool isVisible { get; set; }
 
@@ -149,6 +155,13 @@ namespace WayToEarth.GameLogic
         public GameObject()
         {
             isValid = true;
+
+            if (this.GetType() == typeof(GameObject))
+            {
+                GameObject go = this;
+                go.Coord = new Coord();
+            }
+            
 
             model = null;
 

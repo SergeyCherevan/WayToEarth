@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
     class VisioObject : GameObject
     {
-        override public Complex Coord { get; set; }
-
-        override public double X { get; set; }
-
-        override public double Y { get; set; }
+        override public Coord Coord { get; set; }
 
         override public double Angle { get; set; }
 
