@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Numerics;
-using System.Text;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using WayToEarth.GameLogic;

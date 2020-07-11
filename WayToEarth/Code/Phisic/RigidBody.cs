@@ -50,7 +50,7 @@ namespace WayToEarth
             set { ActionAlways = value.MethodInMap<PhisicalObject.Action>(); }
         }
 
-        public List<KeyValuePair<string, string>> strInteractToCondit
+        public string strInteractToCondit
         {
             get => InteractToCondit.MethodsPairsToNamesP();
             set
@@ -61,7 +61,7 @@ namespace WayToEarth
                     >();
             }
         }
-        public List<KeyValuePair<string, string>> strActToCondit
+        public string strActToCondit
         {
             get => ActToCondit.MethodsPairsToNamesP();
             set

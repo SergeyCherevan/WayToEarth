@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WayToEarth.StaysOfWork
+﻿namespace WayToEarth.StaysOfWork
 {
     class PlayingResult
     {

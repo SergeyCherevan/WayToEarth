@@ -25,7 +25,7 @@ namespace WayToEarth.StaysOfWork.Levels
 
             var jsonSerializer = new JsonSerializer();
             jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            jsonSerializer.TypeNameHandling = TypeNameHandling.Auto;
+            jsonSerializer.TypeNameHandling = TypeNameHandling.All;
             jsonSerializer.Formatting = Formatting.Indented;
 
             JsonReader jsonReader = new JsonTextReader(file);

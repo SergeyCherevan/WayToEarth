@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Collections.Generic;
 using WayToEarth.GameLogic;
 using static WayToEarth.MainProgramWork;
 

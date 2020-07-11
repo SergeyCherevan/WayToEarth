@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Numerics;
 using System.Windows.Controls;
 using WayToEarth.Phisic;
 using static WayToEarth.GameLogic.GameObject;
@@ -107,7 +106,7 @@ namespace WayToEarth.GameLogic
             set { ActionAlwaysAfterPhisic = value.MethodInMap<GameObject.Action>(); }
         }
 
-        public virtual List<KeyValuePair<string, string>> strInteractToCondit
+        public virtual string strInteractToCondit
         {
             get => InteractToCondit.MethodsPairsToNamesP();
             set
@@ -118,7 +117,7 @@ namespace WayToEarth.GameLogic
                     >();
             }
         }
-        public virtual List<KeyValuePair<string, string>> strActToConditBeforeIntract
+        public virtual string strActToConditBeforeIntract
         {
             get => ActToConditBeforeInteract.MethodsPairsToNamesP();
             set
@@ -129,7 +128,7 @@ namespace WayToEarth.GameLogic
                     >();
             }
         }
-        public virtual List<KeyValuePair<string, string>> strActToConditAfterIntract
+        public virtual string strActToConditAfterIntract
         {
             get => ActToConditAfterIntract.MethodsPairsToNamesP();
             set
@@ -140,7 +139,7 @@ namespace WayToEarth.GameLogic
                     >();
             }
         }
-        public virtual List<KeyValuePair<string, string>> strActToConditAfterPhisic
+        public virtual string strActToConditAfterPhisic
         {
             get => ActToConditAfterPhisic.MethodsPairsToNamesP();
             set

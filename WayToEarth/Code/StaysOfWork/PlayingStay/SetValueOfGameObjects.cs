@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Windows;
+﻿using System.Collections.Generic;
 using WayToEarth.GameLogic;
-using WayToEarth.Phisic;
-using static WayToEarth.GameLogic.GameObject;
 
 namespace WayToEarth.StaysOfWork
 {

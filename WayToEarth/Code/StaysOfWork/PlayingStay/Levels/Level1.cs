@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Windows;
 using WayToEarth.GameLogic;
 using WayToEarth.Phisic;
 using static WayToEarth.GameLogic.GameObject;

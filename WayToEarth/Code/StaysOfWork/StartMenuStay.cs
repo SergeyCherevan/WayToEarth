@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Collections;
 using System.Windows;
-using System.Windows.Controls;
 using static WayToEarth.MainProgramWork;
 
 namespace WayToEarth.StaysOfWork

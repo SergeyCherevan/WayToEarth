@@ -1,7 +1,7 @@
 ﻿using WayToEarth.GameLogic;
 using WayToEarth.Phisic;
 
-namespace WayToEarth.Code
+namespace WayToEarth
 {
     static class StarterNameMap
     {

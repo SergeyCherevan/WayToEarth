@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using WayToEarth.GameLogic;
-using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
@@ -90,41 +85,41 @@ namespace WayToEarth.GameLogic
             return MethodNameMap<Method>.GetName(method);
         }
 
-        public static
-            List<KeyValuePair<string, string>>
+        public static string
                 MethodsPairsToNamesP<Method1, Method2>(this List<KeyValuePair<Method1, Method2>> methodsPairs)
                     where Method1 : MulticastDelegate
                     where Method2 : MulticastDelegate
         {
-            var retList = new List<KeyValuePair<string, string>>();
+            List<string> retList = new List<string>();
 
             foreach (var pairCondInteract in methodsPairs)
             {
-                retList.Add(
-                        new KeyValuePair<string, string>(
-                                pairCondInteract.Key.NameInMap(),
-                                pairCondInteract.Value.NameInMap()
-                            )
-                    );
+                retList.Add(pairCondInteract.Key.NameInMap() + "\t" + pairCondInteract.Value.NameInMap());
             }
 
-            return retList;
+            return String.Join("\n", retList);
         }
 
         public static
             List<KeyValuePair<Method1, Method2>>
-                NamesPairsToMethodsP<Method1, Method2>(this List<KeyValuePair<string, string>> stringsPairs)
+                NamesPairsToMethodsP<Method1, Method2>(this string str)
                     where Method1 : MulticastDelegate
                     where Method2 : MulticastDelegate
         {
             var retList = new List<KeyValuePair<Method1, Method2>>();
 
+            if (str == "") return retList;
+
+            var stringsPairs = str.Split("\n");
+
             foreach (var pairCondInteract in stringsPairs)
             {
+                var pair = pairCondInteract.Split("\t");
+
                 retList.Add(
                         new KeyValuePair<Method1, Method2>(
-                                pairCondInteract.Key.MethodInMap<Method1>(),
-                                pairCondInteract.Value.MethodInMap<Method2>()
+                                pair[0].MethodInMap<Method1>(),
+                                pair[1].MethodInMap<Method2>()
                             )
                     );
             }

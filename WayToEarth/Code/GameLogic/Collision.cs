@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
-using WayToEarth.GameLogic;
-using static WayToEarth.GameLogic.GameObject;
-
-namespace WayToEarth.GameLogic
+﻿namespace WayToEarth.GameLogic
 {
     static class Collision
     {

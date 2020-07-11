@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
+using System.IO;
+using System.Linq;
+using Newtonsoft.Json;
+
 using WayToEarth.StaysOfWork;
 using WayToEarth.StaysOfWork.Levels;
-using System.Linq;
 using WayToEarth.GameLogic;
-using Newtonsoft.Json;
-using WayToEarth.Code;
 using WayToEarth.Phisic;
 
 namespace WayToEarth
@@ -76,12 +77,22 @@ namespace WayToEarth
 
                         case WayToSetNewStay.Pause:
 
-                            var obj = (currently as PlayingStay).rocket.InteractToCondit.MethodsPairsToNamesP();
+                            var list = (currently as PlayingStay).rocket.InteractToCondit.MethodsPairsToNamesP();
 
-                            /*MessageBox.Show(
-                                    System.Text.Json.JsonSerializer.Serialize(obj, obj.GetType(), 
-                                        new System.Text.Json.JsonSerializerOptions() { WriteIndented = true })
-                                );*/
+                            StreamWriter file = new StreamWriter("List.txt", false);
+
+                            var jsonSerializer = new Newtonsoft.Json.JsonSerializer();
+                            jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                            jsonSerializer.TypeNameHandling = TypeNameHandling.Auto;
+                            jsonSerializer.Formatting = Formatting.Indented;
+
+                            JsonWriter jsonWriter = new JsonTextWriter(file);
+                            jsonSerializer.Serialize(jsonWriter, list);
+
+                            jsonWriter.Close();
+                            file.Close();
+
+
 
                             (setOfStay[WayToSetNewStay.Pause] as PauseStay).SetResultOfPlaying(currently as PlayingStay);
 

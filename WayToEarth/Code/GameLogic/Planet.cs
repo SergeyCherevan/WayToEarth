@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WayToEarth.Phisic;
-
-namespace WayToEarth.GameLogic
+﻿namespace WayToEarth.GameLogic
 {
     class Planet : PhisicSimulatedGameObj
     {

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
 using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic

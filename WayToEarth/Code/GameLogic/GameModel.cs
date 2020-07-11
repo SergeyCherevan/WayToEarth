@@ -1,11 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows;
-using WayToEarth.GameLogic;
 using WayToEarth.Phisic;
 using WayToEarth.StaysOfWork;
 
