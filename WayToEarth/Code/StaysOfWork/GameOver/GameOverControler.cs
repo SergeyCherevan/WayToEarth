@@ -5,8 +5,6 @@ namespace WayToEarth.StaysOfWork
 {
     partial class GameOverStay : PlayingStay
     {
-        public override int NumberOfLevel { get { return parentStay.NumberOfLevel; } set { } }
-
         public override void StartController()
         {
             MainWindow.window.BackToMenu.Click += PauseStay.BackToMenuClick;

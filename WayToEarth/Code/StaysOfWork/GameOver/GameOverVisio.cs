@@ -13,15 +13,14 @@ namespace WayToEarth.StaysOfWork
 
             centralObject = new GameObject();
 
-            centralObject.X = rocket.X;
-            centralObject.Y = rocket.Y;
+            centralObject.Coord = rocket.Coord;
         }
 
         void SetGemeOverTitle()
         {
             KeyValuePair<Message, object> mes;
 
-            mes = visioMessageTurn.popByCode(Message.GameOver);
+            mes = MainProgramWork.mainMessageTurn.popByCode(Message.GameOver);
 
             if (mes.Key != Message.GameOver)
                 throw new ApplicationException("Messages to Visio block of GameOver class haven\'t got GemeOver message");

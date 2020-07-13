@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using WayToEarth.GameLogic;
 using Newtonsoft.Json;
 
 namespace WayToEarth.StaysOfWork
 {
-    abstract partial class PlayingStay
+    partial class PlayingStay
     {
         virtual public void SaveGame()
         {
@@ -16,7 +14,7 @@ namespace WayToEarth.StaysOfWork
 
             var jsonSerializer = new Newtonsoft.Json.JsonSerializer();
             jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-            jsonSerializer.TypeNameHandling = TypeNameHandling.All;
+            jsonSerializer.TypeNameHandling = TypeNameHandling.Auto;
             jsonSerializer.Formatting = Formatting.Indented;
 
             JsonWriter jsonWriter = new JsonTextWriter(file);
@@ -34,6 +32,5 @@ namespace WayToEarth.StaysOfWork
             file.Close();
 
         }
-
     }
 }

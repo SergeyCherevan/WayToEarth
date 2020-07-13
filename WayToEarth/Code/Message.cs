@@ -12,6 +12,7 @@
         ClickOfLevel2,
         ClickOfLevel3,
         ClickOfListOfSavedGames,
+        ClickOfSavedGame,
 
         ClickOfPause,
 

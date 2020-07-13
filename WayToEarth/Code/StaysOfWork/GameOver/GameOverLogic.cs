@@ -6,6 +6,8 @@ namespace WayToEarth.StaysOfWork
 {
     partial class GameOverStay : PlayingStay
     {
+        public override void StartLogic() { }
+
         public override WayToSetNewStay Logic()
         {
             base.Logic();
@@ -26,7 +28,7 @@ namespace WayToEarth.StaysOfWork
             return WayToSetNewStay.NotSet;
         }
 
-        override public List<GameObject> SetValueOfGameObjects() { return null; }
+        override public GameModel SetValueOfGameModel(string str) { return null; }
 
         public List<GameObject> SetValueOfMainGameObjects() { return null; }
 
@@ -34,7 +36,7 @@ namespace WayToEarth.StaysOfWork
 
         public List<GameObject> SetValueOfSecondaryGameObjects() { return null; }
 
-        override public void SetActionsAndInteractions(List<GameObject> gameObjects) { }
+        override public void SetActionsAndInteractions(GameModel game) { }
 
         override public void SaveGame() { }
     }

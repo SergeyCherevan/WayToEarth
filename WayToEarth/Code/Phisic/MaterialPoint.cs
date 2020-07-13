@@ -23,10 +23,10 @@ namespace WayToEarth.Phisic
         public Coord speed { get; set; }
         public double mass { get; set; }
 
-        double x { get => coord.x; set { coord.x = value; } }
-        double y { get => coord.y; set { coord.y = value; } }
-        double Vx { get => speed.x; set { speed.x = value; } }
-        double Vy { get => speed.y; set { speed.y = value; } }
+        [JsonIgnore] double x { get => coord.x; set { coord.x = value; } }
+        [JsonIgnore] double y { get => coord.y; set { coord.y = value; } }
+        [JsonIgnore] double Vx { get => speed.x; set { speed.x = value; } }
+        [JsonIgnore] double Vy { get => speed.y; set { speed.y = value; } }
 
 
 

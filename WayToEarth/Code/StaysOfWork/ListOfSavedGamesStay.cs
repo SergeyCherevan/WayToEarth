@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.IO;
-using WayToEarth.StaysOfWork.Levels;
 using static WayToEarth.MainProgramWork;
 
 namespace WayToEarth.StaysOfWork
@@ -63,33 +62,39 @@ namespace WayToEarth.StaysOfWork
         public override void Controller()
         {
             KeyValuePair<Message, object> mes =
-                controlerMessageTurn.popByCode(Message. ClickOfListOfSavedGames);
+                controlerMessageTurn.popByCode(Message.ClickOfSavedGame);
 
-            if (mes.Key == Message.ClickOfListOfSavedGames)
+            if (mes.Key != Message.EmptyTurn)
                 logicMessageTurn.push(mes);
 
-            mes =controlerMessageTurn.popByCode(Message.ClickOfBackToMenu);
+            mes = controlerMessageTurn.popByCode(Message.ClickOfBackToMenu);
 
-            if (mes.Key == Message.ClickOfBackToMenu)
+            if (mes.Key != Message.EmptyTurn)
                 logicMessageTurn.push(mes);
         }
 
         public override WayToSetNewStay Logic()
         {
             KeyValuePair<Message, object> mes =
-                logicMessageTurn.popByCode(Message. ClickOfListOfSavedGames);
+                logicMessageTurn.popByCode(Message.ClickOfSavedGame);
 
-            if (mes.Key == Message.ClickOfListOfSavedGames)
+            if (mes.Key != Message.EmptyTurn)
             {
-                (setOfStay[WayToSetNewStay.SavedGame] as SavedGame).StrTimeOfGameSaving = (mes.Value as Button).Content as string; 
-                //logicMessageTurn.push(Messages.FileName, (mes.Value as Button).Content);
+                string fileName = (mes.Value as Button).Content as string;
+                fileName = fileName.Replace(".", "").Replace(":", "") + ".json";
+
+                mainMessageTurn.push(
+                        Message.ClickOfSavedGame,
+                        fileName
+                    ); 
+
                 return WayToSetNewStay.SavedGame;
             }
 
 
             mes = logicMessageTurn.popByCode(Message.ClickOfBackToMenu);
 
-            if (mes.Key == Message.ClickOfBackToMenu)
+            if (mes.Key != Message.EmptyTurn)
             {                
                 return WayToSetNewStay.StartMenu;
             }
@@ -103,7 +108,7 @@ namespace WayToEarth.StaysOfWork
 
         public static void GoSavedGamesClick(object sender, EventArgs ea)
         {
-           MainProgramWork.currently.controlerMessageTurn.push(Message. ClickOfListOfSavedGames, sender);
+           MainProgramWork.currently.controlerMessageTurn.push(Message.ClickOfSavedGame, sender);
         }
     }
 }

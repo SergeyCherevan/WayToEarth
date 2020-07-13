@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace WayToEarth.Phisic
 {
@@ -7,6 +8,7 @@ namespace WayToEarth.Phisic
         public double x { get; set; }
         public double y { get; set; }
 
+        [JsonIgnore]
         public double polarAngle
         {
             get => Math.Atan2(y, x);
@@ -16,7 +18,7 @@ namespace WayToEarth.Phisic
                 y = polarR * Math.Sin(value);
             }
         }
-
+        [JsonIgnore]
         public double polarR
         {
             get => Math.Sqrt(x * x + y * y);

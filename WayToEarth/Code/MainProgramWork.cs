@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
-using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
 
 using WayToEarth.StaysOfWork;
-using WayToEarth.StaysOfWork.Levels;
 using WayToEarth.GameLogic;
 using WayToEarth.Phisic;
 
@@ -37,6 +34,8 @@ namespace WayToEarth
         public static Dictionary<WayToSetNewStay, StayOfWork> setOfStay;
         public static StayOfWork currently;
 
+        public static MessageTurn mainMessageTurn;
+
         public static void Start()
         {
             try
@@ -44,6 +43,8 @@ namespace WayToEarth
                 MainWindow.window.Grid.Focus();
 
                 SetValueOfStaticMaps();
+
+                mainMessageTurn = new MessageTurn();
 
                 SetStaysValue();
             }
@@ -57,8 +58,6 @@ namespace WayToEarth
         {
             try
             {
-                MainWindow.window.PlayingCanvas.Focus();
-
                 WayToSetNewStay wayToSetNewStay = currently.IterationOfProgramCycle();
 
                 if (wayToSetNewStay != WayToSetNewStay.NotSet)
@@ -76,24 +75,6 @@ namespace WayToEarth
 
 
                         case WayToSetNewStay.Pause:
-
-                            var list = (currently as PlayingStay).rocket.InteractToCondit.MethodsPairsToNamesP();
-
-                            StreamWriter file = new StreamWriter("List.txt", false);
-
-                            var jsonSerializer = new Newtonsoft.Json.JsonSerializer();
-                            jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                            jsonSerializer.TypeNameHandling = TypeNameHandling.Auto;
-                            jsonSerializer.Formatting = Formatting.Indented;
-
-                            JsonWriter jsonWriter = new JsonTextWriter(file);
-                            jsonSerializer.Serialize(jsonWriter, list);
-
-                            jsonWriter.Close();
-                            file.Close();
-
-
-
                             (setOfStay[WayToSetNewStay.Pause] as PauseStay).SetResultOfPlaying(currently as PlayingStay);
 
                             currently = setOfStay[WayToSetNewStay.Pause];
@@ -134,18 +115,21 @@ namespace WayToEarth
             currently = setOfStay[WayToSetNewStay.StartMenu] = new StartMenuStay();
             setOfStay[WayToSetNewStay.LevelMenu] = new LevelsMenuStay();
 
-            setOfStay[WayToSetNewStay.Level1] = new Level1();
-            (setOfStay[WayToSetNewStay.Level1] as PlayingStay).NumberOfLevel = 1;
+            setOfStay[WayToSetNewStay.Level1] = new PlayingStay();
+            /*(setOfStay[WayToSetNewStay.Level1] as PlayingStay).SaveLevel(1);
+            setOfStay[WayToSetNewStay.Level1].Remove();*/
 
-            setOfStay[WayToSetNewStay.Level2] = new Level2();
-            (setOfStay[WayToSetNewStay.Level2] as PlayingStay).NumberOfLevel = 2;
+            setOfStay[WayToSetNewStay.Level2] = new PlayingStay();
+            /*(setOfStay[WayToSetNewStay.Level2] as PlayingStay).SaveLevel(2);
+            setOfStay[WayToSetNewStay.Level2].Remove();*/
 
-            setOfStay[WayToSetNewStay.Level3] = new Level3();
-            (setOfStay[WayToSetNewStay.Level3] as PlayingStay).NumberOfLevel = 3;
+            setOfStay[WayToSetNewStay.Level3] = new PlayingStay();
+            /*(setOfStay[WayToSetNewStay.Level3] as PlayingStay).SaveLevel(3);
+            setOfStay[WayToSetNewStay.Level3].Remove();*/
 
             setOfStay[WayToSetNewStay.ListOfSavedGames] = new ListOfSavedGamesStay();
 
-            setOfStay[WayToSetNewStay.SavedGame] = new SavedGame();
+            setOfStay[WayToSetNewStay.SavedGame] = new PlayingStay();
 
 
             setOfStay[WayToSetNewStay.Pause] = new PauseStay();

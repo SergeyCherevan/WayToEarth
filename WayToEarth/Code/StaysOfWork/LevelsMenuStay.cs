@@ -69,22 +69,44 @@ namespace WayToEarth.StaysOfWork
                 logicMessageTurn.popByCode(Message.ClickOfLevel1);
 
             if (mes.Key == Message.ClickOfLevel1)
+            {
+                mainMessageTurn.push(mes);
+
                 return MainProgramWork.WayToSetNewStay.Level1;
+            }
+
+                
 
             mes = logicMessageTurn.popByCode(Message.ClickOfLevel2);
 
             if (mes.Key == Message.ClickOfLevel2)
+            {
+                mainMessageTurn.push(mes);
+
                 return MainProgramWork.WayToSetNewStay.Level2;
+            }
+
+                
 
             mes = logicMessageTurn.popByCode(Message.ClickOfLevel3);
 
             if (mes.Key == Message.ClickOfLevel3)
+            {
+                mainMessageTurn.push(mes);
+
                 return MainProgramWork.WayToSetNewStay.Level3;
+            }
+
+
 
             mes = logicMessageTurn.popByCode(Message.ClickOfListOfSavedGames);
 
             if (mes.Key == Message.ClickOfListOfSavedGames)
+            {
                 return MainProgramWork.WayToSetNewStay.ListOfSavedGames;
+            }
+                
+
 
             return WayToSetNewStay.NotSet;
         }

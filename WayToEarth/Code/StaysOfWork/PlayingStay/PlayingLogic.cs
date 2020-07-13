@@ -4,10 +4,8 @@ using static WayToEarth.MainProgramWork;
 
 namespace WayToEarth.StaysOfWork
 {
-    abstract partial class PlayingStay
+    partial class PlayingStay
     {
-        public abstract int NumberOfLevel { get; set; }
-
         public double timeInterval = 1;
 
         public Planet centerPlanet;
@@ -17,22 +15,35 @@ namespace WayToEarth.StaysOfWork
         public PlayingBorder playingBorder;
 
         public List<Meteor> meteors;
+        public List<Planet> planets;
         public int countOfMeteors = 150;
 
         public GameModel gModel;
 
         override public void StartLogic()
         {
-            gModel = new GameModel();
+            string fileName = "";
 
-            List<GameObject> gameObjects = SetValueOfGameObjects();
+            var mes = mainMessageTurn.popByCodes(new List<Message>()
+                {
+                    Message.ClickOfLevel1,
+                    Message.ClickOfLevel2,
+                    Message.ClickOfLevel3,
+                });
 
-            gModel.RegisterListOfGameObjects(gameObjects);
+            if (mes.Key != Message.EmptyTurn)
+            {
+                fileName = $"Level {mes.Key - Message.ClickOfLevel1 + 1}.json";
+            }
 
-            gModel.phModel.SetGravitationInteractive();
+            mes = mainMessageTurn.popByCode(Message.ClickOfSavedGame);
 
+            if (mes.Key != Message.EmptyTurn)
+            {
+                fileName = mes.Value as string;
+            }
 
-            SetActionsAndInteractions(gameObjects);
+            gModel = SetValueOfGameModel(fileName);
         }
 
         public override WayToSetNewStay Logic()
@@ -102,7 +113,7 @@ namespace WayToEarth.StaysOfWork
                 {
                     case Message.GameOver:
 
-                        visioMessageTurn.push(mes);
+                        mainMessageTurn.push(mes);
 
                         WayToSetNewStay newStay = WayToSetNewStay.GameOver;
                         return newStay;                        

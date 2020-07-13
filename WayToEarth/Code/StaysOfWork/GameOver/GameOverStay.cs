@@ -25,9 +25,9 @@ namespace WayToEarth.StaysOfWork
 
             scale = ps.scale;
 
-            controlerMessageTurn = ps.controlerMessageTurn;
-            logicMessageTurn = ps.logicMessageTurn;
-            visioMessageTurn = ps.visioMessageTurn;
+            controlerMessageTurn = new MessageTurn();
+            logicMessageTurn = new MessageTurn();
+            visioMessageTurn = new MessageTurn();
         }
 
         public override void Set()
@@ -37,7 +37,7 @@ namespace WayToEarth.StaysOfWork
 
             StartController();
 
-            //StartLogic();
+            StartLogic();
 
             StartVisio();
         }

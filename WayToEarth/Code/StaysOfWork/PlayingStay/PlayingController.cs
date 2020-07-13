@@ -4,13 +4,15 @@ using System.Windows.Input;
 
 namespace WayToEarth.StaysOfWork
 {
-    abstract partial class PlayingStay
+    partial class PlayingStay
     {
 
         public override void StartController() { }
 
         public override void Controller()
         {
+            MainWindow.window.PlayingCanvas.Focus();
+
             KeyValuePair<Message, object> mes;
 
             while ((mes = controlerMessageTurn.popByCodes(

@@ -6,7 +6,7 @@ using WayToEarth.GameLogic;
 
 namespace WayToEarth.StaysOfWork
 {
-    abstract partial class PlayingStay : StayOfWork
+    partial class PlayingStay : StayOfWork
     {
         public GameObject centralObject;
 

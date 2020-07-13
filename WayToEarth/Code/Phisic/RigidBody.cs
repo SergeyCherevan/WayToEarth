@@ -16,10 +16,10 @@ namespace WayToEarth
         public Coord speed { get => mp.speed; set { mp.speed = value; } }
         public double mass { get => mp.mass; set { mp.mass = value; } }
 
-        double x { get => coord.x; set { coord.x = value; } }
-        double y { get => coord.y; set { coord.y = value; } }
-        double Vx { get => speed.x; set { speed.x = value; } }
-        double Vy { get => speed.y; set { speed.y = value; } }
+        [JsonIgnore] double x { get => coord.x; set { coord.x = value; } }
+        [JsonIgnore] double y { get => coord.y; set { coord.y = value; } }
+        [JsonIgnore] double Vx { get => speed.x; set { speed.x = value; } }
+        [JsonIgnore] double Vy { get => speed.y; set { speed.y = value; } }
 
         public double angle { get => rc.angle; set { rc.angle = value; } }
         public double angulVel { get => rc.angulVel; set { rc.angulVel = value; } }
