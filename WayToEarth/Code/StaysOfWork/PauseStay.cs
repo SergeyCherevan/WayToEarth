@@ -6,7 +6,7 @@ using static WayToEarth.MainProgramWork;
 
 namespace WayToEarth.StaysOfWork
 {
-    class PauseStay : StayOfWork
+    public class PauseStay : StayOfWork
     {
         public PlayingStay currentGameStay;
 

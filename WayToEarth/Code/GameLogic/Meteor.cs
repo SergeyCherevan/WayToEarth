@@ -3,7 +3,7 @@ using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
-    class Meteor : PhisicSimulatedGameObj
+    public class Meteor : PhisicSimulatedGameObj
     {
         override public double Angle
         {

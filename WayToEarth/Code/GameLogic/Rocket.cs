@@ -3,7 +3,7 @@ using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
-    class Rocket : PhisicSimulatedGameObj
+    public class Rocket : PhisicSimulatedGameObj
     {
 
         public enum TranslationEngine

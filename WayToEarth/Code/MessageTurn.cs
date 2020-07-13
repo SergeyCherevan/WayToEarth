@@ -2,7 +2,7 @@
 
 namespace WayToEarth
 {
-    class MessageTurn
+    public class MessageTurn
     {
         List<KeyValuePair<Message, object>> mesTurn;
 

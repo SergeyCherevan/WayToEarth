@@ -6,7 +6,7 @@ using Action = WayToEarth.Phisic.PhisicalObject.Action;
 
 namespace WayToEarth.Phisic
 {
-    class MaterialPoint : PhisicalObject
+    public class MaterialPoint : PhisicalObject
     {
         public MaterialPoint mp
         {

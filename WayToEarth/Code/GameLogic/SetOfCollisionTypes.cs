@@ -4,7 +4,7 @@ using static WayToEarth.GameLogic.GameObject;
 
 namespace WayToEarth.GameLogic
 {
-    class SetOfCollisionTypes
+    public class SetOfCollisionTypes
     {
         public Dictionary<KeyValuePair<Type, Type>, Interaction> dictionary;
 

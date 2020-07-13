@@ -4,7 +4,7 @@ using static WayToEarth.MainProgramWork;
 
 namespace WayToEarth.StaysOfWork
 {
-    partial class GameOverStay : PlayingStay
+    public partial class GameOverStay : PlayingStay
     {
         public override void StartLogic() { }
 

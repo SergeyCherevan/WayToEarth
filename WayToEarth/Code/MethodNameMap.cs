@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WayToEarth.GameLogic
 {
-    class MethodNameMap<Method>
+    public class MethodNameMap<Method>
         where Method : MulticastDelegate
     {
         public static Dictionary<string, Method> map;
@@ -71,7 +71,7 @@ namespace WayToEarth.GameLogic
         }
     }
 
-    static class HelpStaticClassForMethodNameMap
+    static public class HelpStaticClassForMethodNameMap
     {
         public static Method MethodInMap<Method>(this string str)
             where Method : MulticastDelegate

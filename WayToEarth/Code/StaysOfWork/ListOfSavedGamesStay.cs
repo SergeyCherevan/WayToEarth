@@ -7,7 +7,7 @@ using static WayToEarth.MainProgramWork;
 
 namespace WayToEarth.StaysOfWork
 {
-    class ListOfSavedGamesStay : StayOfWork
+    public class ListOfSavedGamesStay : StayOfWork
     {
 
         public ListOfSavedGamesStay()

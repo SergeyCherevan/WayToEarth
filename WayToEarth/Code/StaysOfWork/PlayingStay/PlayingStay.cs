@@ -2,7 +2,7 @@
 
 namespace WayToEarth.StaysOfWork
 {
-    partial class PlayingStay : StayOfWork
+    public partial class PlayingStay : StayOfWork
     {
         
         public PlayingStay()

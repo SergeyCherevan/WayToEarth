@@ -1,6 +1,6 @@
 ﻿namespace WayToEarth
 {
-    enum Message
+    public enum Message
     {
         EmptyTurn = -1,
 

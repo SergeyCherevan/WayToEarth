@@ -5,7 +5,7 @@ using static WayToEarth.MainProgramWork;
 
 namespace WayToEarth.StaysOfWork
 {
-    class LevelsMenuStay : StayOfWork
+    public class LevelsMenuStay : StayOfWork
     {
 
         public LevelsMenuStay()

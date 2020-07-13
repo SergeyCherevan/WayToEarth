@@ -2,7 +2,7 @@
 
 namespace WayToEarth.StaysOfWork
 {
-    partial class GameOverStay : PlayingStay
+    public partial class GameOverStay : PlayingStay
     {
         PlayingStay parentStay;
 

@@ -6,7 +6,7 @@ using WayToEarth.StaysOfWork;
 
 namespace WayToEarth.GameLogic
 {
-    class GameModel
+    public class GameModel
     {
         public List<GameObject> gObjects { get; set; }
 

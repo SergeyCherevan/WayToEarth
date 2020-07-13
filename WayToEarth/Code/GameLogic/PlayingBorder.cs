@@ -4,7 +4,7 @@ using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
-    class PlayingBorder : VisioObject
+    public class PlayingBorder : VisioObject
     {
         [JsonIgnore]
         public Planet planet;

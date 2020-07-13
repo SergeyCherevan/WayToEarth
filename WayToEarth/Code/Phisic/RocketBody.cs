@@ -2,7 +2,7 @@
 
 namespace WayToEarth.Phisic
 {
-    class RocketBody : RigidBody
+    public class RocketBody : RigidBody
     {
 
         public enum TranslationEngine

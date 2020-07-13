@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace WayToEarth.StaysOfWork
 {
-    partial class PlayingStay
+    public partial class PlayingStay
     {
         virtual public void SaveGame()
         {

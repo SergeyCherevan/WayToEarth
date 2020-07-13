@@ -7,23 +7,23 @@ using Action = WayToEarth.Phisic.PhisicalObject.Action;
 
 namespace WayToEarth
 {
-    class RigidBody : PhisicalObject
+    public class RigidBody : PhisicalObject
     {
         public MaterialPoint mp { get; set; }
         public RotatCharacter rc { get; set; }
 
-        public Coord coord { get => mp.coord; set { mp.coord = value; } }
-        public Coord speed { get => mp.speed; set { mp.speed = value; } }
-        public double mass { get => mp.mass; set { mp.mass = value; } }
+        [JsonIgnore] public Coord coord { get => mp.coord; set { mp.coord = value; } }
+        [JsonIgnore] public Coord speed { get => mp.speed; set { mp.speed = value; } }
+        [JsonIgnore] public double mass { get => mp.mass; set { mp.mass = value; } }
 
         [JsonIgnore] double x { get => coord.x; set { coord.x = value; } }
         [JsonIgnore] double y { get => coord.y; set { coord.y = value; } }
         [JsonIgnore] double Vx { get => speed.x; set { speed.x = value; } }
         [JsonIgnore] double Vy { get => speed.y; set { speed.y = value; } }
 
-        public double angle { get => rc.angle; set { rc.angle = value; } }
-        public double angulVel { get => rc.angulVel; set { rc.angulVel = value; } }
-        public double inertMoment { get => rc.inertMoment; set { rc.inertMoment = value; } }
+        [JsonIgnore] public double angle { get => rc.angle; set { rc.angle = value; } }
+        [JsonIgnore] public double angulVel { get => rc.angulVel; set { rc.angulVel = value; } }
+        [JsonIgnore] public double inertMoment { get => rc.inertMoment; set { rc.inertMoment = value; } }
 
 
 

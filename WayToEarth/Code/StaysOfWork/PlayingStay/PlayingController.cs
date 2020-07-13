@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace WayToEarth.StaysOfWork
 {
-    partial class PlayingStay
+    public partial class PlayingStay
     {
 
         public override void StartController() { }

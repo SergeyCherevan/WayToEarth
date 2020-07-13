@@ -3,7 +3,7 @@ using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
-    class ReactiveGases : VisioObject
+    public class ReactiveGases : VisioObject
     {
         [JsonIgnore]
         public Rocket rocket;

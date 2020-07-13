@@ -2,7 +2,7 @@
 
 namespace WayToEarth.StaysOfWork
 {
-    abstract class StayOfWork
+    abstract public class StayOfWork
     {
 
         protected internal MessageTurn controlerMessageTurn;

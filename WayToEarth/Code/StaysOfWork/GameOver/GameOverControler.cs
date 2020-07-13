@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WayToEarth.StaysOfWork
 {
-    partial class GameOverStay : PlayingStay
+    public partial class GameOverStay : PlayingStay
     {
         public override void StartController()
         {

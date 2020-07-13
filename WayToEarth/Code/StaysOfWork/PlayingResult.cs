@@ -1,6 +1,6 @@
 ﻿namespace WayToEarth.StaysOfWork
 {
-    class PlayingResult
+    public class PlayingResult
     {
         public bool isWin;
         public int valueOfStars;

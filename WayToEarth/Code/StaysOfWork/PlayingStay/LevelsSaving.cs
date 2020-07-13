@@ -9,7 +9,7 @@ using static WayToEarth.GameLogic.GameObject;
 
 namespace WayToEarth.StaysOfWork
 {
-    partial class PlayingStay
+    public partial class PlayingStay
     {
 
         public void SaveLevel(int level)
@@ -29,7 +29,7 @@ namespace WayToEarth.StaysOfWork
 
             SetActionsAndInteractionsL(gameObjects);
 
-            StreamWriter file = new StreamWriter($"Level {level}.json", false);
+            StreamWriter file = new StreamWriter($@"C:\Users\chere\source\repos\SergeyCherevan\WayToEarth\WayToEarth\bin\Debug\netcoreapp3.1\Level {level}.json", false);
 
             var jsonSerializer = new Newtonsoft.Json.JsonSerializer();
             jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -51,14 +51,14 @@ namespace WayToEarth.StaysOfWork
             centerPlanet = new Planet();
             gameObjects.Add(centerPlanet);
 
-            centerPlanet.image = MainWindow.window.Planet;
+            centerPlanet.ImageName = "Planet";
 
 
 
             rocket = new Rocket();
             gameObjects.Add(rocket);
 
-            rocket.image = MainWindow.window.Rocket;
+            rocket.ImageName = "Rocket";
 
             rocket.Y = -400;
             rocket.Angle = 0;
@@ -68,14 +68,14 @@ namespace WayToEarth.StaysOfWork
 
             fire = new ReactiveGases(rocket);
 
-            fire.image = MainWindow.window.Fire;
+            fire.ImageName = "Fire";
 
             gameObjects.Add(fire);
 
 
             playingBorder = new PlayingBorder(centerPlanet, rocket);
 
-            playingBorder.image = MainWindow.window.Border;
+            playingBorder.ImageName = "Border";
 
             gameObjects.Add(playingBorder);
 
@@ -103,7 +103,7 @@ namespace WayToEarth.StaysOfWork
             gameObjects.Add(centerPlanet);
             centerPlanet.phisObj.angulVel = -2 * Math.PI / 500;
 
-            centerPlanet.image = MainWindow.window.CenterStar;
+            centerPlanet.ImageName = "CenterStar";
 
 
 
@@ -113,10 +113,9 @@ namespace WayToEarth.StaysOfWork
                 planets.Add(new Planet());
                 gameObjects.Add(planets[i]);
 
-                planets[i].image = MainWindow.Clone(MainWindow.window.SmallPlanet);
-                MainWindow.window.PlayingCanvas.Children.Add(planets[i].image);
+                planets[i].ImageName = "SmallPlanet";
 
-                planets[i].phisObj.mass = centerPlanet.phisObj.mass / 100;
+                planets[i].phisObj.mass = centerPlanet.phisObj.mass / 10000000;
                 planets[i].phisObj.coord = centerPlanet.phisObj.coord + Coord.FromPolar(500 + 400, 2 * Math.PI / countOfPlanets * i);
                 planets[i].phisObj.speed = Gravitation.CosmicSpeeds(planets[i].phisObj, centerPlanet.phisObj, 1);
             }
@@ -126,7 +125,7 @@ namespace WayToEarth.StaysOfWork
             rocket = new Rocket();
             gameObjects.Add(rocket);
 
-            rocket.image = MainWindow.window.Rocket;
+            rocket.ImageName = "Rocket";
 
             rocket.Y = -400;
             rocket.Angle = 0;
@@ -136,14 +135,14 @@ namespace WayToEarth.StaysOfWork
 
             fire = new ReactiveGases(rocket);
 
-            fire.image = MainWindow.window.Fire;
+            fire.ImageName = "Fire";
 
             gameObjects.Add(fire);
 
 
             playingBorder = new PlayingBorder(centerPlanet, rocket);
 
-            playingBorder.image = MainWindow.window.Border;
+            playingBorder.ImageName = "Border";
 
             gameObjects.Add(playingBorder);
 
@@ -171,7 +170,7 @@ namespace WayToEarth.StaysOfWork
             gameObjects.Add(centerPlanet);
             centerPlanet.phisObj.angulVel = 2 * Math.PI / 500;
 
-            centerPlanet.image = MainWindow.window.CenterStar;
+            centerPlanet.ImageName = "CenterStar";
 
 
 
@@ -181,8 +180,7 @@ namespace WayToEarth.StaysOfWork
                 planets.Add(new Planet());
                 gameObjects.Add(planets[i]);
 
-                planets[i].image = MainWindow.Clone(MainWindow.window.SmallPlanet);
-                MainWindow.window.PlayingCanvas.Children.Add(planets[i].image);
+                planets[i].ImageName = "Planet";
 
                 planets[i].phisObj.mass = centerPlanet.phisObj.mass / 100;
                 planets[i].phisObj.coord = centerPlanet.phisObj.coord + Coord.FromPolar(500 + 400, 2 * Math.PI / countOfPlanets * i);
@@ -194,7 +192,7 @@ namespace WayToEarth.StaysOfWork
             rocket = new Rocket();
             gameObjects.Add(rocket);
 
-            rocket.image = MainWindow.window.Rocket;
+            rocket.ImageName = "Rocket";
 
             rocket.Y = -400;
             rocket.Angle = 0;
@@ -204,14 +202,14 @@ namespace WayToEarth.StaysOfWork
 
             fire = new ReactiveGases(rocket);
 
-            fire.image = MainWindow.window.Fire;
+            fire.ImageName = "Fire";
 
             gameObjects.Add(fire);
 
 
             playingBorder = new PlayingBorder(centerPlanet, rocket);
 
-            playingBorder.image = MainWindow.window.Border;
+            playingBorder.ImageName = "Border";
 
             gameObjects.Add(playingBorder);
 
@@ -236,8 +234,7 @@ namespace WayToEarth.StaysOfWork
             {
                 meteors.Add(new Meteor());
 
-                meteors[i].image = MainWindow.Clone(MainWindow.window.Meteor);
-                MainWindow.window.PlayingCanvas.Children.Add(meteors[i].image);
+                meteors[i].ImageName = "Meteor";
 
 
                 double rOrbitrocket = (rocket.phisObj.coord - centerPlanet.phisObj.coord).polarR;

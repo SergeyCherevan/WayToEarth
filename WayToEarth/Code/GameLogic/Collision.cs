@@ -1,6 +1,6 @@
 ﻿namespace WayToEarth.GameLogic
 {
-    static class Collision
+    static public class Collision
     {
         public static bool isCollided(GameObject go1, GameObject go2, double timeInSec)
         {

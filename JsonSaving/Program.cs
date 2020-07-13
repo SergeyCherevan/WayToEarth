@@ -7,7 +7,7 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace JsonSaving
 {
-    class Program
+    public class Program
     {
 
         static GameModel model;

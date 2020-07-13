@@ -4,7 +4,7 @@ using static WayToEarth.MainProgramWork;
 
 namespace WayToEarth.StaysOfWork
 {
-    partial class PlayingStay
+    public partial class PlayingStay
     {
         public double timeInterval = 1;
 
@@ -20,10 +20,10 @@ namespace WayToEarth.StaysOfWork
 
         public GameModel gModel;
 
+        string fileName = "";
+
         override public void StartLogic()
         {
-            string fileName = "";
-
             var mes = mainMessageTurn.popByCodes(new List<Message>()
                 {
                     Message.ClickOfLevel1,

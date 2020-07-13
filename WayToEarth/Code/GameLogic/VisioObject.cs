@@ -2,7 +2,7 @@
 
 namespace WayToEarth.GameLogic
 {
-    class VisioObject : GameObject
+    public class VisioObject : GameObject
     {
         override public Coord Coord { get; set; }
 

@@ -2,7 +2,7 @@
 
 namespace WayToEarth.GameLogic
 {
-    class Bang : VisioObject
+    public class Bang : VisioObject
     {
         double Time;
 

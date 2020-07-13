@@ -2,7 +2,7 @@
 
 namespace WayToEarth.Phisic
 {
-    static class Gravitation
+    static public class Gravitation
     {
         public static double GravityConst = 6.67 * Math.Pow(10, -11);
 

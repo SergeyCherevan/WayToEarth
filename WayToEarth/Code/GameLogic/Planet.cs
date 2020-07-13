@@ -1,6 +1,6 @@
 ﻿namespace WayToEarth.GameLogic
 {
-    class Planet : PhisicSimulatedGameObj
+    public class Planet : PhisicSimulatedGameObj
     {
         public override double Radius { get { return (image?.ActualHeight ?? 0) / 2; } }
 

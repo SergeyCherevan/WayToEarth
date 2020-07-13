@@ -6,7 +6,7 @@ using static WayToEarth.GameLogic.GameObject;
 
 namespace WayToEarth.GameLogic
 {
-    class GameObject
+    public class GameObject
     {
         virtual public bool isValid { get; set; }
 
@@ -170,7 +170,7 @@ namespace WayToEarth.GameLogic
 
 
 
-    class NullGDelegate
+    public class NullGDelegate
     {
         public static void SetGDelegateValue(GameObject o)
         {

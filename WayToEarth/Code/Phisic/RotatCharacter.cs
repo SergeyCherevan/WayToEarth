@@ -5,7 +5,7 @@ using Action = WayToEarth.Phisic.PhisicalObject.Action;
 
 namespace WayToEarth.Phisic
 {
-    class RotatCharacter : PhisicalObject
+    public class RotatCharacter : PhisicalObject
     {
         public RotatCharacter rc
         {

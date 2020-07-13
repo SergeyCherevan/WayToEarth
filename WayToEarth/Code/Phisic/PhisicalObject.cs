@@ -8,7 +8,7 @@ using Action = WayToEarth.Phisic.PhisicalObject.Action;
 
 namespace WayToEarth.Phisic
 {
-    interface PhisicalObject
+    public interface PhisicalObject
     {
         MaterialPoint mp { get => new MaterialPoint(); set { } }
         RotatCharacter rc { get => new RotatCharacter(); set { } }
@@ -131,7 +131,7 @@ namespace WayToEarth.Phisic
 
 
 
-    class NullPhDelegate
+    public class NullPhDelegate
     {
         public static void SetPhDelegateValue(PhisicalObject o)
         {

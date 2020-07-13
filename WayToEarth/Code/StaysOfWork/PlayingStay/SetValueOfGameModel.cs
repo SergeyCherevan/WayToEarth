@@ -5,7 +5,7 @@ using WayToEarth.GameLogic;
 
 namespace WayToEarth.StaysOfWork
 {
-    partial class PlayingStay
+    public partial class PlayingStay
     {
         public virtual GameModel SetValueOfGameModel(string fileName)
         {

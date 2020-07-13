@@ -10,7 +10,7 @@ using WayToEarth.Phisic;
 
 namespace WayToEarth
 {
-    static class MainProgramWork
+    static public class MainProgramWork
     {
         public enum WayToSetNewStay
         {
@@ -116,16 +116,10 @@ namespace WayToEarth
             setOfStay[WayToSetNewStay.LevelMenu] = new LevelsMenuStay();
 
             setOfStay[WayToSetNewStay.Level1] = new PlayingStay();
-            /*(setOfStay[WayToSetNewStay.Level1] as PlayingStay).SaveLevel(1);
-            setOfStay[WayToSetNewStay.Level1].Remove();*/
 
             setOfStay[WayToSetNewStay.Level2] = new PlayingStay();
-            /*(setOfStay[WayToSetNewStay.Level2] as PlayingStay).SaveLevel(2);
-            setOfStay[WayToSetNewStay.Level2].Remove();*/
 
             setOfStay[WayToSetNewStay.Level3] = new PlayingStay();
-            /*(setOfStay[WayToSetNewStay.Level3] as PlayingStay).SaveLevel(3);
-            setOfStay[WayToSetNewStay.Level3].Remove();*/
 
             setOfStay[WayToSetNewStay.ListOfSavedGames] = new ListOfSavedGamesStay();
 
@@ -138,10 +132,15 @@ namespace WayToEarth
             currently.Set();
         }
 
-        static void SetValueOfStaticMaps()
+        public static void SetValueOfStaticMaps()
         {
             StarterNameMap.Start(new ImageNameMap());
 
+            SetValueOfStaticMethodsMaps();
+        }
+
+        public static void SetValueOfStaticMethodsMaps()
+        {
             StarterNameMap.Start(new MethodNameMap<GameObject.Action>());
 
             StarterNameMap.Start(new MethodNameMap<GameObject.Interaction>());

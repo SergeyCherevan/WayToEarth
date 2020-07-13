@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace WayToEarth
 {
-    class ImageNameMap
+    public class ImageNameMap
     {
         public static Dictionary<string, Image> map;
 
@@ -29,7 +29,7 @@ namespace WayToEarth
             if (duplicateImages.IndexOf(s) == -1) return map[s];
 
             Image image = MainWindow.Clone(map[s]);
-            MainWindow.window.PlayingCanvas.Children.Add(image);
+            MainWindow.window?.PlayingCanvas.Children.Add(image);
 
             return image;
         }

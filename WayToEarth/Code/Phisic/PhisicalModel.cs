@@ -3,7 +3,7 @@ using WayToEarth.GameLogic;
 
 namespace WayToEarth.Phisic
 {
-    class PhisicalModel
+    public class PhisicalModel
     {
         public List<PhisicalObject> pObjects { get; set; }
 

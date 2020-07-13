@@ -4,7 +4,7 @@ using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
-    class PhisicSimulatedGameObj : GameObject
+    public class PhisicSimulatedGameObj : GameObject
     {
 
         public PhisicalObject phisObj;
@@ -12,6 +12,7 @@ namespace WayToEarth.GameLogic
         [JsonIgnore] 
         override public Coord Coord { get { return phisObj.coord; } set { phisObj.coord = value; } }
 
+        [JsonIgnore]
         override public double Angle
         {
             get {

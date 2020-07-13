@@ -3,7 +3,7 @@ using WayToEarth.Phisic;
 
 namespace WayToEarth
 {
-    static class StarterNameMap
+    static public class StarterNameMap
     {
         static public void Start(MethodNameMap<GameObject.Action> q)
         {

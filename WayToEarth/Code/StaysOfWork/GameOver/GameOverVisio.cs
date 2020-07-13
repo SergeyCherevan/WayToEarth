@@ -4,7 +4,7 @@ using WayToEarth.GameLogic;
 
 namespace WayToEarth.StaysOfWork
 {
-    partial class GameOverStay : PlayingStay
+    public partial class GameOverStay : PlayingStay
     {
         
         public override void StartVisio()
@@ -23,7 +23,7 @@ namespace WayToEarth.StaysOfWork
             mes = MainProgramWork.mainMessageTurn.popByCode(Message.GameOver);
 
             if (mes.Key != Message.GameOver)
-                throw new ApplicationException("Messages to Visio block of GameOver class haven\'t got GemeOver message");
+                throw new ApplicationException("Messages to Visio block of GameOver public class haven\'t got GemeOver message");
 
             PlayingResult result = (PlayingResult)mes.Value;
 
