@@ -31,7 +31,7 @@ namespace WayToEarth.StaysOfWork
 
             StreamWriter file = new StreamWriter($@"C:\Users\chere\source\repos\SergeyCherevan\WayToEarth\WayToEarth\bin\Debug\netcoreapp3.1\Level {level}.json", false);
 
-            var jsonSerializer = new Newtonsoft.Json.JsonSerializer();
+            var jsonSerializer = new JsonSerializer();
             jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             jsonSerializer.TypeNameHandling = TypeNameHandling.Auto;
             jsonSerializer.Formatting = Formatting.Indented;
@@ -279,6 +279,7 @@ namespace WayToEarth.StaysOfWork
 
             gModel.CollisionTypes.Add(null, null, Collision.CollisionsOfAll);
             gModel.CollisionTypes.Add(typeof(Planet), null, Collision.CollisionWhithPlanet);
+            gModel.CollisionTypes.Add(typeof(Rocket), null, Collision.CollisionWhithRocket);
             gModel.CollisionTypes.Add(typeof(Planet), typeof(Rocket), Collision.CollisionOfPlanetWhithRocket);
         }
     }

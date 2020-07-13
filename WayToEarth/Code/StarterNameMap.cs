@@ -29,6 +29,7 @@ namespace WayToEarth
             MethodNameMap<GameObject.Interaction>.AddMethod(Collision.ObjectsCollision);
             MethodNameMap<GameObject.Interaction>.AddMethod(Collision.CollisionsOfAll);
             MethodNameMap<GameObject.Interaction>.AddMethod(Collision.CollisionWhithPlanet);
+            MethodNameMap<GameObject.Interaction>.AddMethod(Collision.CollisionWhithRocket);
             MethodNameMap<GameObject.Interaction>.AddMethod(Collision.CollisionOfPlanetWhithRocket);
 
             MethodNameMap<GameObject.Interaction>.AddMethod(Rocket.RocketCollide);
@@ -89,6 +90,25 @@ namespace WayToEarth
             ImageNameMap.AddImage(MainWindow.window.Bang);
             ImageNameMap.AddImage(MainWindow.window.BigBang);
             ImageNameMap.AddImage(MainWindow.window.LargeBang);
+        }
+
+        static public void Start(TypeNameMap q)
+        {
+            TypeNameMap.Start();
+
+            TypeNameMap.AddType(typeof(GameObject));
+
+            TypeNameMap.AddType(typeof(PhisicSimulatedGameObj));
+            TypeNameMap.AddType(typeof(VisioObject));
+
+            TypeNameMap.AddType(typeof(Planet));
+            TypeNameMap.AddType(typeof(Rocket));
+            TypeNameMap.AddType(typeof(Meteor));
+
+
+            TypeNameMap.AddType(typeof(PlayingBorder));
+            TypeNameMap.AddType(typeof(ReactiveGases));
+            TypeNameMap.AddType(typeof(Bang));
         }
     }
 }

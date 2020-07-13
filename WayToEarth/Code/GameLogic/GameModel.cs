@@ -18,6 +18,13 @@ namespace WayToEarth.GameLogic
         [JsonIgnore]
         public SetOfCollisionTypes CollisionTypes;
 
+        public string strCollisionTypes
+        {
+            get => CollisionTypes.TypesPairsToNamesP();
+
+            set { CollisionTypes = value.NamesPairsToTypesP(); }
+        }
+
         public GameModel()
         {
             gObjects = new List<GameObject>();

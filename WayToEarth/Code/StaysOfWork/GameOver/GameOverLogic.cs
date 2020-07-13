@@ -36,8 +36,6 @@ namespace WayToEarth.StaysOfWork
 
         public List<GameObject> SetValueOfSecondaryGameObjects() { return null; }
 
-        override public void SetActionsAndInteractions(GameModel game) { }
-
         override public void SaveGame() { }
     }
 }

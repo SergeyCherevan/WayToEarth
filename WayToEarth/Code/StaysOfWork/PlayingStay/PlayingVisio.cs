@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Media;
 using WayToEarth.GameLogic;
+using WayToEarth.Phisic;
 
 namespace WayToEarth.StaysOfWork
 {
@@ -55,31 +56,24 @@ namespace WayToEarth.StaysOfWork
             MainWindow window = MainWindow.window;
             Canvas canvas = window.PlayingCanvas;
 
-            double wObj = go.Width;
-            double hObj = go.Height;
+            Coord whObj = go.Size;
 
             if (!go.isVisible)
-                return new PointF((float)-wObj, (float)-hObj);
+                return new PointF((float)-whObj.x, (float)-whObj.y);
 
-            double wCanv = canvas.ActualWidth;
-            double hCanv = canvas.ActualHeight;
+            Coord cCanv = new Coord(canvas.ActualWidth, canvas.ActualHeight);
 
-            double xCentr = wCanv / 2;
-            double yCentr = hCanv / 2;
+            Coord cCentr = cCanv / 2;
 
-            double defX = go.X - central.X;
-            double defY = go.Y - central.Y;
+            Coord def = go.Coord - central.Coord;
 
-            double defXbyScale = defX / scale;
-            double defYbyScale = defY / scale;
+            Coord defByScale = def / scale;
 
-            double centrObjX = xCentr + defXbyScale;
-            double centrObjY = yCentr + defYbyScale;
+            Coord byCentrObj = cCentr + defByScale;
 
-            double resultX = centrObjX - wObj / 2;
-            double resultY = centrObjY - hObj / 2;
+            Coord result = byCentrObj - whObj / 2;
 
-            return new PointF((float)resultX, (float)resultY);
+            return new PointF((float)result.x, (float)result.y);
         }
 
 

@@ -4,27 +4,28 @@ namespace WayToEarth
 {
     public class MessageTurn
     {
-        List<KeyValuePair<Message, object>> mesTurn;
+        virtual public List<KeyValuePair<Message, object>> mesTurn { get; set; }
 
         public MessageTurn() {
-            mesTurn = new List<KeyValuePair<Message, object>>();
+            if (this.GetType() == typeof(MessageTurn))
+                mesTurn = new List<KeyValuePair<Message, object>>();
         }
 
-        public MessageTurn push(Message code, object inform)
+        virtual public MessageTurn push(Message code, object inform)
         {
             mesTurn.Add(new KeyValuePair<Message, object>(code, inform));
 
             return this;
         }
 
-        public MessageTurn push(KeyValuePair<Message, object> mes)
+        virtual public MessageTurn push(KeyValuePair<Message, object> mes)
         {
             mesTurn.Add(mes);
 
             return this;
         }
 
-        public KeyValuePair<Message, object> pop()
+        virtual public KeyValuePair<Message, object> pop()
         {
             KeyValuePair<Message, object> ret;
 
@@ -41,7 +42,7 @@ namespace WayToEarth
             return ret;
         }
 
-        public KeyValuePair<Message, object> get()
+        virtual public KeyValuePair<Message, object> get()
         {
             KeyValuePair<Message, object> ret;
 
@@ -57,7 +58,7 @@ namespace WayToEarth
             return ret;
         }
 
-        public KeyValuePair<Message, object> popByCode(Message code)
+        virtual public KeyValuePair<Message, object> popByCode(Message code)
         {
             KeyValuePair<Message, object> ret;
 
@@ -82,7 +83,7 @@ namespace WayToEarth
             return ret;
         }
 
-        public KeyValuePair<Message, object> getByCode(Message code)
+        virtual public KeyValuePair<Message, object> getByCode(Message code)
         {
             KeyValuePair<Message, object> ret;
 
@@ -106,7 +107,7 @@ namespace WayToEarth
             return ret;
         }
 
-        public KeyValuePair<Message, object> popByCodes(List<Message> codes)
+        virtual public KeyValuePair<Message, object> popByCodes(List<Message> codes)
         {
             KeyValuePair<Message, object> ret;
 
@@ -131,7 +132,7 @@ namespace WayToEarth
             return ret;
         }
 
-        public KeyValuePair<Message, object> getByCodes(List<Message> codes)
+        virtual public KeyValuePair<Message, object> getByCodes(List<Message> codes)
         {
             KeyValuePair<Message, object> ret;
 

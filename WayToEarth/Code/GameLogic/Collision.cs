@@ -40,12 +40,12 @@
             bang.image = MainWindow.Clone(MainWindow.window.Bang);            
             MainWindow.window.PlayingCanvas.Children.Add(bang.image);
 
-            bang.X = (go1.X + go2.X) / 2;
-            bang.Y = (go1.Y + go2.Y) / 2;
+            bang.Coord = (go1.Coord + go2.Coord) / 2;
         }
 
         public static void CollisionWhithPlanet(GameObject planet, GameObject go, double timeInSec)
         {
+            planet.isValid = true;
             go.isValid = false;
 
             Bang bang = new Bang();
@@ -54,8 +54,21 @@
             bang.image = MainWindow.Clone(MainWindow.window.BigBang);
             MainWindow.window.PlayingCanvas.Children.Add(bang.image);
 
-            bang.X = go.X;
-            bang.Y = go.Y;
+            bang.Coord = go.Coord;
+        }
+
+        public static void CollisionWhithRocket(GameObject rocket, GameObject go, double timeInSec)
+        {
+            rocket.isValid = false;
+            go.isValid = false;
+
+            Bang bang = new Bang();
+            rocket.model.addedObjects.Add(bang);
+
+            bang.image = MainWindow.Clone(MainWindow.window.BigBang);
+            MainWindow.window.PlayingCanvas.Children.Add(bang.image);
+
+            bang.Coord = (rocket.Coord + go.Coord) / 2;
         }
 
         public static void CollisionOfPlanetWhithRocket(GameObject planet, GameObject rocket, double timeInSec)
@@ -68,8 +81,7 @@
             bang.image = MainWindow.Clone(MainWindow.window.LargeBang);
             MainWindow.window.PlayingCanvas.Children.Add(bang.image);
 
-            bang.X = rocket.X;
-            bang.Y = rocket.Y;
+            bang.Coord = rocket.Coord;
         }
     }
 }

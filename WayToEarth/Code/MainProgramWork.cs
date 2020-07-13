@@ -141,6 +141,8 @@ namespace WayToEarth
 
         public static void SetValueOfStaticMethodsMaps()
         {
+            StarterNameMap.Start(new TypeNameMap());
+
             StarterNameMap.Start(new MethodNameMap<GameObject.Action>());
 
             StarterNameMap.Start(new MethodNameMap<GameObject.Interaction>());

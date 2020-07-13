@@ -12,7 +12,7 @@ namespace WayToEarth.GameLogic
 
             Coord = new Coord();
 
-            Time = 10;
+            Time = 20;
 
             ActionAlwaysBeforeIntract += Burning;
         }
@@ -20,6 +20,8 @@ namespace WayToEarth.GameLogic
         public static void Burning(GameObject go, double timeInSec)
         {
             Bang bang = (Bang)go;
+
+            bang.Angle += 5;
 
             bang.Time -= timeInSec;
 

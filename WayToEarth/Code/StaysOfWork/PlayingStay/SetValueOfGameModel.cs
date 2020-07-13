@@ -35,14 +35,10 @@ namespace WayToEarth.StaysOfWork
             playingBorder.planet = centerPlanet;
 
             meteors = new List<Meteor>();
-            foreach (GameObject go in model.gObjects)
-            {
-                if (go is Meteor m) meteors.Add(m);
-            }
-
             planets = new List<Planet>();
             foreach (GameObject go in model.gObjects)
             {
+                if (go is Meteor m) meteors.Add(m);
                 if (go is Planet p) planets.Add(p);
             }
 
@@ -52,17 +48,7 @@ namespace WayToEarth.StaysOfWork
             model.phModel.SetGravitationInteractive();
 
 
-            SetActionsAndInteractions(model);
-
-
             return model;
-        }
-
-        public virtual void SetActionsAndInteractions(GameModel model)
-        {
-            model.CollisionTypes.Add(null, null, Collision.CollisionsOfAll);
-            model.CollisionTypes.Add(typeof(Planet), null, Collision.CollisionWhithPlanet);
-            model.CollisionTypes.Add(typeof(Planet), typeof(Rocket), Collision.CollisionOfPlanetWhithRocket);
         }
     }
 }
