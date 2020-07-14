@@ -13,7 +13,7 @@ namespace WayToEarth.StaysOfWork
 
             centralObject = new GameObject();
 
-            centralObject.Coord = rocket.Coord;
+            centralObject.Coord = gModel.rocket.Coord;
         }
 
         void SetGemeOverTitle()

@@ -11,13 +11,11 @@ namespace WayToEarth.StaysOfWork
     {
         public GameObject centralObject;
 
-        public ReactiveGases fire;
-
         public double scale = 1;
 
         public override void StartVisio()
         {
-            centralObject = rocket;
+            centralObject = gModel.rocket;
         }
 
 

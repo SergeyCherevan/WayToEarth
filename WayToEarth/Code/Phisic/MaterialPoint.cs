@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using WayToEarth.GameLogic;
+using WayToEarth.NameMaps;
 using static WayToEarth.Phisic.PhisicalObject;
 using Action = WayToEarth.Phisic.PhisicalObject.Action;
 
@@ -120,75 +121,5 @@ namespace WayToEarth.Phisic
             speed += p / mass;
             return this;
         }
-
-        /*public Coord coord { get; set; }
-        public Coord speed { get; set; }
-        public double mass { get; set; }
-
-        public double angle { get { return 0; } set { } }
-        public double angulVel { get { return 0; } set { } }
-        public double inertMoment { get { return 0; } set { } }
-
-        public double x { get { return coord.Real; } set { coord = new Coord(value, coord.Imaginary); } }
-        public double y { get { return coord.Imaginary; } set { coord = new Coord(coord.Real, value); } }
-        public double Vx { get { return speed.Real; } set { speed = new Coord(value, speed.Imaginary); } }
-        public double Vy { get { return speed.Imaginary; } set { speed = new Coord(speed.Real, value); } }
-
-
-
-        public Interaction InteractionWithAll { get; set; }
-        public Action ActionAlways { get; set; }
-
-        public List<KeyValuePair<InteractCondition, Interaction>> InteractToCondit { get; set; }
-        public List<KeyValuePair<ActCondition, Action>> ActToCondit { get; set; }
-
-
-
-        public MaterialPoint()
-        {
-            coord = speed = new Coord();
-            mass = 1;
-
-            NullPhDelegate.SetPhDelegateValue(this);
-        }
-
-        public MaterialPoint(Coord Coord, Coord Speed, double M)
-        {
-            coord = Coord;
-            speed = Speed;
-            mass = M;
-
-            NullPhDelegate.SetPhDelegateValue(this);
-        }
-
-        public PhisicalObject Move(double timeInSec)
-        {
-            coord += speed * timeInSec;
-            return this;
-        }
-        
-        public PhisicalObject AddLinearAcceleration(Coord a, double timeInSec)
-        {
-            speed += a * timeInSec;
-            return this;
-        }
-
-        public PhisicalObject ActForce(Coord F, double timeInSec)
-        {
-            AddLinearAcceleration(F/mass, timeInSec);
-            return this;
-        }
-
-        public PhisicalObject AddImpulse(Coord p)
-        {
-            speed += p / mass;
-            return this;
-        }
-
-        public PhisicalObject AddAngularAcceleration(double e, double timeInSec) { return this; }
-
-        public PhisicalObject ActMomentOfForce(double M, double timeInSec) { return this; }
-
-        public PhisicalObject AddMomentOfImpulse(double L) { return this; }*/
     }
 }

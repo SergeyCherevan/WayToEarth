@@ -7,6 +7,7 @@ using System.Linq;
 using WayToEarth.StaysOfWork;
 using WayToEarth.GameLogic;
 using WayToEarth.Phisic;
+using WayToEarth.NameMaps;
 
 namespace WayToEarth
 {

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using WayToEarth.GameLogic;
 
-namespace WayToEarth
+namespace WayToEarth.NameMaps
 {
     public class TypeNameMap
     {

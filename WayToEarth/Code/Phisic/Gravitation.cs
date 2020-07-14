@@ -4,7 +4,7 @@ namespace WayToEarth.Phisic
 {
     static public class Gravitation
     {
-        public static double GravityConst = 6.67 * Math.Pow(10, -11);
+        public static double GravityConst = 6.67e-11;
 
         public static Coord NewtonForce(PhisicalObject m1, PhisicalObject m2)
         {

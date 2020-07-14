@@ -24,12 +24,12 @@ namespace WayToEarth.StaysOfWork
 
             gModel.phModel.SetGravitationInteractive();
 
-            centralObject = rocket;
+            centralObject = gModel.rocket;
 
 
             SetActionsAndInteractionsL(gameObjects);
 
-            StreamWriter file = new StreamWriter($@"C:\Users\chere\source\repos\SergeyCherevan\WayToEarth\WayToEarth\bin\Debug\netcoreapp3.1\Level {level}.json", false);
+            StreamWriter file = new StreamWriter($@"C:\Users\chere\Source\Repos\SergeyCherevan\WayToEarth\WayToEarth\Code\JSON\Level {level}.json", false);
 
             var jsonSerializer = new JsonSerializer();
             jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -45,45 +45,48 @@ namespace WayToEarth.StaysOfWork
 
         public List<GameObject> SetValueOfGameObjectsL1()
         {
+            int countOfMeteors = 350;
+
             List<GameObject> gameObjects = new List<GameObject>();
 
 
-            centerPlanet = new Planet();
-            gameObjects.Add(centerPlanet);
+            gModel.centerPlanet = new Planet();
+            gModel.centerPlanet.phisObj.mass = 1e+14;
+            gameObjects.Add(gModel.centerPlanet);
 
-            centerPlanet.ImageName = "Planet";
-
-
-
-            rocket = new Rocket();
-            gameObjects.Add(rocket);
-
-            rocket.ImageName = "Rocket";
-
-            rocket.Y = -400;
-            rocket.Angle = 0;
-
-            rocket.phisObj.speed = Gravitation.CosmicSpeeds(rocket.phisObj, centerPlanet.phisObj, 1);
-
-
-            fire = new ReactiveGases(rocket);
-
-            fire.ImageName = "Fire";
-
-            gameObjects.Add(fire);
-
-
-            playingBorder = new PlayingBorder(centerPlanet, rocket);
-
-            playingBorder.ImageName = "Border";
-
-            gameObjects.Add(playingBorder);
+            gModel.centerPlanet.ImageName = "Planet";
 
 
 
-            meteors = SetValueOfMeteorsL();
+            gModel.rocket = new Rocket();
+            gameObjects.Add(gModel.rocket);
 
-            gameObjects = gameObjects.Concat(meteors).ToList();
+            gModel.rocket.ImageName = "Rocket";
+
+            gModel.rocket.Y = -400;
+            gModel.rocket.Angle = 0;
+
+            gModel.rocket.phisObj.speed = Gravitation.CosmicSpeeds(gModel.rocket.phisObj, gModel.centerPlanet.phisObj, 1);
+
+
+            gModel.fire = new ReactiveGases(gModel.rocket);
+
+            gModel.fire.ImageName = "Fire";
+
+            gameObjects.Add(gModel.fire);
+
+
+            gModel.playingBorder = new PlayingBorder(gModel.centerPlanet, gModel.rocket);
+
+            gModel.playingBorder.ImageName = "Border";
+
+            gameObjects.Add(gModel.playingBorder);
+
+
+
+            gModel.meteors = SetValueOfMeteorsL(countOfMeteors);
+
+            gameObjects = gameObjects.Concat(gModel.meteors).ToList();
 
 
 
@@ -96,61 +99,62 @@ namespace WayToEarth.StaysOfWork
 
             List<GameObject> gameObjects = new List<GameObject>();
 
-            countOfMeteors = 350;
+            int countOfMeteors = 350;
 
 
-            centerPlanet = new Planet();
-            gameObjects.Add(centerPlanet);
-            centerPlanet.phisObj.angulVel = -2 * Math.PI / 500;
+            gModel.centerPlanet = new Planet();
+            gameObjects.Add(gModel.centerPlanet);
+            gModel.centerPlanet.phisObj.angulVel = -2 * Math.PI / 500;
+            gModel.centerPlanet.phisObj.mass = 1e+14;
 
-            centerPlanet.ImageName = "CenterStar";
+            gModel.centerPlanet.ImageName = "CenterStar";
 
 
 
-            planets = new List<Planet>();
+            gModel.planets = new List<Planet>();
             for (int i = 0; i < countOfPlanets; i++)
             {
-                planets.Add(new Planet());
-                gameObjects.Add(planets[i]);
+                gModel.planets.Add(new Planet());
+                gameObjects.Add(gModel.planets[i]);
 
-                planets[i].ImageName = "SmallPlanet";
+                gModel.planets[i].ImageName = "SmallPlanet";
 
-                planets[i].phisObj.mass = centerPlanet.phisObj.mass / 10000000;
-                planets[i].phisObj.coord = centerPlanet.phisObj.coord + Coord.FromPolar(500 + 400, 2 * Math.PI / countOfPlanets * i);
-                planets[i].phisObj.speed = Gravitation.CosmicSpeeds(planets[i].phisObj, centerPlanet.phisObj, 1);
+                gModel.planets[i].phisObj.mass = gModel.centerPlanet.phisObj.mass / 1000;
+                gModel.planets[i].phisObj.coord = gModel.centerPlanet.phisObj.coord + Coord.FromPolar(500 + 400, 2 * Math.PI / countOfPlanets * i);
+                gModel.planets[i].phisObj.speed = Gravitation.CosmicSpeeds(gModel.planets[i].phisObj, gModel.centerPlanet.phisObj, 1);
             }
 
 
 
-            rocket = new Rocket();
-            gameObjects.Add(rocket);
+            gModel.rocket = new Rocket();
+            gameObjects.Add(gModel.rocket);
 
-            rocket.ImageName = "Rocket";
+            gModel.rocket.ImageName = "Rocket";
 
-            rocket.Y = -400;
-            rocket.Angle = 0;
+            gModel.rocket.Y = -400;
+            gModel.rocket.Angle = 0;
 
-            rocket.phisObj.speed = Gravitation.CosmicSpeeds(rocket.phisObj, centerPlanet.phisObj, 1);
-
-
-            fire = new ReactiveGases(rocket);
-
-            fire.ImageName = "Fire";
-
-            gameObjects.Add(fire);
+            gModel.rocket.phisObj.speed = Gravitation.CosmicSpeeds(gModel.rocket.phisObj, gModel.centerPlanet.phisObj, 1);
 
 
-            playingBorder = new PlayingBorder(centerPlanet, rocket);
+            gModel.fire = new ReactiveGases(gModel.rocket);
 
-            playingBorder.ImageName = "Border";
+            gModel.fire.ImageName = "Fire";
 
-            gameObjects.Add(playingBorder);
+            gameObjects.Add(gModel.fire);
+
+
+            gModel.playingBorder = new PlayingBorder(gModel.centerPlanet, gModel.rocket);
+
+            gModel.playingBorder.ImageName = "Border";
+
+            gameObjects.Add(gModel.playingBorder);
 
 
 
-            meteors = SetValueOfMeteorsL();
+            gModel.meteors = SetValueOfMeteorsL(countOfMeteors);
 
-            gameObjects = gameObjects.Concat(meteors).ToList();
+            gameObjects = gameObjects.Concat(gModel.meteors).ToList();
 
 
 
@@ -163,114 +167,122 @@ namespace WayToEarth.StaysOfWork
 
             List<GameObject> gameObjects = new List<GameObject>();
 
-            countOfMeteors = 350;
+            int countOfMeteors = 350;
 
 
-            centerPlanet = new Planet();
-            gameObjects.Add(centerPlanet);
-            centerPlanet.phisObj.angulVel = 2 * Math.PI / 500;
+            gModel.centerPlanet = new Planet();
+            gameObjects.Add(gModel.centerPlanet);
+            gModel.centerPlanet.phisObj.angulVel = 2 * Math.PI / 500;
+            gModel.centerPlanet.phisObj.mass = 1e+14;
 
-            centerPlanet.ImageName = "CenterStar";
+            gModel.centerPlanet.ImageName = "CenterStar";
 
 
 
-            planets = new List<Planet>();
+            gModel.planets = new List<Planet>();
             for (int i = 0; i < countOfPlanets; i++)
             {
-                planets.Add(new Planet());
-                gameObjects.Add(planets[i]);
+                gModel.planets.Add(new Planet());
+                gameObjects.Add(gModel.planets[i]);
 
-                planets[i].ImageName = "Planet";
+                gModel.planets[i].ImageName = "Planet";
 
-                planets[i].phisObj.mass = centerPlanet.phisObj.mass / 100;
-                planets[i].phisObj.coord = centerPlanet.phisObj.coord + Coord.FromPolar(500 + 400, 2 * Math.PI / countOfPlanets * i);
-                planets[i].phisObj.speed = Gravitation.CosmicSpeeds(planets[i].phisObj, centerPlanet.phisObj, 1);
+                gModel.planets[i].phisObj.mass = gModel.centerPlanet.phisObj.mass / 100;
+                gModel.planets[i].phisObj.coord = gModel.centerPlanet.phisObj.coord + Coord.FromPolar(500 + 400, 2 * Math.PI / countOfPlanets * i);
+                gModel.planets[i].phisObj.speed = Gravitation.CosmicSpeeds(gModel.planets[i].phisObj, gModel.centerPlanet.phisObj, 1);
             }
 
 
 
-            rocket = new Rocket();
-            gameObjects.Add(rocket);
+            gModel.rocket = new Rocket();
+            gameObjects.Add(gModel.rocket);
 
-            rocket.ImageName = "Rocket";
+            gModel.rocket.ImageName = "Rocket";
 
-            rocket.Y = -400;
-            rocket.Angle = 0;
+            gModel.rocket.Y = -400;
+            gModel.rocket.Angle = 0;
 
-            rocket.phisObj.speed = Gravitation.CosmicSpeeds(rocket.phisObj, centerPlanet.phisObj, 1);
-
-
-            fire = new ReactiveGases(rocket);
-
-            fire.ImageName = "Fire";
-
-            gameObjects.Add(fire);
+            gModel.rocket.phisObj.speed = Gravitation.CosmicSpeeds(gModel.rocket.phisObj, gModel.centerPlanet.phisObj, 1);
 
 
-            playingBorder = new PlayingBorder(centerPlanet, rocket);
+            gModel.fire = new ReactiveGases(gModel.rocket);
 
-            playingBorder.ImageName = "Border";
+            gModel.fire.ImageName = "Fire";
 
-            gameObjects.Add(playingBorder);
+            gameObjects.Add(gModel.fire);
+
+
+            gModel.playingBorder = new PlayingBorder(gModel.centerPlanet, gModel.rocket);
+
+            gModel.playingBorder.ImageName = "Border";
+
+            gameObjects.Add(gModel.playingBorder);
 
 
 
-            meteors = SetValueOfMeteorsL();
+            gModel.meteors = SetValueOfMeteorsL(countOfMeteors);
 
-            gameObjects = gameObjects.Concat(meteors).ToList();
+            gameObjects = gameObjects.Concat(gModel.meteors).ToList();
 
 
 
             return gameObjects;
         }
 
-        public List<Meteor> SetValueOfMeteorsL()
+        public List<Meteor> SetValueOfMeteorsL(int countOfMeteors)
         {
-            List<Meteor> meteors = new List<Meteor>();
+            gModel.meteors = new List<Meteor>();
 
             Random r = new Random();
 
             for (int i = 0; i < countOfMeteors; i++)
             {
-                meteors.Add(new Meteor());
+                gModel.meteors.Add(new Meteor());
 
-                meteors[i].ImageName = "Meteor";
+                gModel.meteors[i].ImageName = "Meteor";
 
 
-                double rOrbitrocket = (rocket.phisObj.coord - centerPlanet.phisObj.coord).polarR;
+                gModel.meteors[i].phisObj.mass = 1000;
+
+                double rOrbitRocket = (gModel.rocket.phisObj.coord - gModel.centerPlanet.phisObj.coord).polarR;
 
                 Coord coord = Coord.FromPolar(
                         r.Next(
-                            (int)rOrbitrocket + 150,
-                            (int)rOrbitrocket + 1500
+                            (int)rOrbitRocket + 150,
+                            (int)rOrbitRocket + 1500
                         ),
                         r.NextDouble() * 2 * Math.PI
                     );
 
-                (meteors[i] as Meteor).phisObj.coord = coord;
+                gModel.meteors[i].phisObj.coord = coord;
 
                 int dirOfRotat = r.NextDouble() < 0.5 ? 1 : -1;
 
-                (meteors[i] as Meteor).phisObj.speed = Gravitation.CosmicSpeeds((meteors[i] as Meteor).phisObj, centerPlanet.phisObj, dirOfRotat) + new Coord((r.NextDouble() - 0.5), (r.NextDouble() - 0.5));
+                gModel.meteors[i].phisObj.speed = Gravitation.CosmicSpeeds(gModel.meteors[i].phisObj, gModel.centerPlanet.phisObj, dirOfRotat);
+                gModel.meteors[i].phisObj.speed +=
+                    Coord.FromPolar(
+                            r.NextDouble() * gModel.meteors[i].phisObj.speed.polarR * 0.5,
+                            r.NextDouble() * 2 * Math.PI
+                        );
             }
 
-            return meteors;
+            return gModel.meteors;
         }
 
         public void SetActionsAndInteractionsL(List<GameObject> gameObjects)
         {
-            rocket.ActionAlwaysBeforeIntract += Rocket.JetTransEngineOperation;
-            rocket.ActionAlwaysBeforeIntract += Rocket.JetRotatEngineOperation;
+            gModel.rocket.ActionAlwaysBeforeIntract += Rocket.JetTransEngineOperation;
+            gModel.rocket.ActionAlwaysBeforeIntract += Rocket.JetRotatEngineOperation;
 
-            rocket.ActionAlwaysAfterPhisic += Rocket.ResetValueOfEngine;
+            gModel.rocket.ActionAlwaysAfterPhisic += Rocket.ResetValueOfEngine;
 
-            rocket.phisObj.ActionAlways += RocketBody.JetTransEngineOperation;
-            rocket.phisObj.ActionAlways += RocketBody.JetRotatEngineOperation;
+            gModel.rocket.phisObj.ActionAlways += RocketBody.JetTransEngineOperation;
+            gModel.rocket.phisObj.ActionAlways += RocketBody.JetRotatEngineOperation;
 
-            rocket.InteractToCondit.Add(new KeyValuePair<InteractCondition, Interaction>(Rocket.RocketIsCollided, Rocket.RocketCollide));
+            gModel.rocket.InteractToCondit.Add(new KeyValuePair<InteractCondition, Interaction>(Rocket.RocketIsCollided, Rocket.RocketCollide));
 
 
-            fire.ActionAlwaysAfterIntract += ReactiveGases.UpdateIsVisio;
+            gModel.fire.ActionAlwaysAfterIntract += ReactiveGases.UpdateIsVisio;
 
             foreach (GameObject go in gameObjects)
             {

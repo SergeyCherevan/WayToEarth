@@ -18,6 +18,9 @@
     <None Remove="background.png" />
     <None Remove="Bang.png" />
     <None Remove="CenterStar.png" />
+    <None Remove="Code\Level 1.json" />
+    <None Remove="Code\Level 2.json" />
+    <None Remove="Code\Level 3.json" />
     <None Remove="Fire.png" />
     <None Remove="Icon.ico" />
     <None Remove="ManyStarsCircle.png" />
@@ -55,6 +58,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Code\JSON\" />
   </ItemGroup>
 
 </Project>

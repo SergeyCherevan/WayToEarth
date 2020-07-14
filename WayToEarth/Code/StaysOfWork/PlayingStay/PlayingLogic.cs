@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using WayToEarth.GameLogic;
 using static WayToEarth.MainProgramWork;
 
@@ -7,16 +8,6 @@ namespace WayToEarth.StaysOfWork
     public partial class PlayingStay
     {
         public double timeInterval = 1;
-
-        public Planet centerPlanet;
-
-        public Rocket rocket;
-
-        public PlayingBorder playingBorder;
-
-        public List<Meteor> meteors;
-        public List<Planet> planets;
-        public int countOfMeteors = 150;
 
         public GameModel gModel;
 
@@ -33,7 +24,7 @@ namespace WayToEarth.StaysOfWork
 
             if (mes.Key != Message.EmptyTurn)
             {
-                fileName = $"Level {mes.Key - Message.ClickOfLevel1 + 1}.json";
+                fileName = $@"C:\Users\chere\Source\Repos\SergeyCherevan\WayToEarth\WayToEarth\Code\JSON\Level {mes.Key - Message.ClickOfLevel1 + 1}.json";
             }
 
             mes = mainMessageTurn.popByCode(Message.ClickOfSavedGame);
@@ -53,6 +44,8 @@ namespace WayToEarth.StaysOfWork
             ComputingOfModeling();
 
             WayToSetNewStay hgm = HandlingGameMessages();
+
+            //MessageBox.Show(gModel.meteors.Count + "");
 
             return hcm != WayToSetNewStay.NotSet ? hcm : hgm;
         }
@@ -77,19 +70,19 @@ namespace WayToEarth.StaysOfWork
                 switch (mes.Key)
                 {
                     case Message.UpCommand:
-                        rocket.translationEngine = Rocket.TranslationEngine.Front;
+                        gModel.rocket.translationEngine = Rocket.TranslationEngine.Front;
                         break;
 
                     case Message.DownCommand:
-                        rocket.translationEngine = Rocket.TranslationEngine.Back;
+                        gModel.rocket.translationEngine = Rocket.TranslationEngine.Back;
                         break;
 
                     case Message.LeftCommand:
-                        rocket.rotationEngine = Rocket.RotationEngine.Left;
+                        gModel.rocket.rotationEngine = Rocket.RotationEngine.Left;
                         break;
 
                     case Message.RightCommand:
-                        rocket.rotationEngine = Rocket.RotationEngine.Right;
+                        gModel.rocket.rotationEngine = Rocket.RotationEngine.Right;
                         break;
 
                     case Message.ClickOfPause:

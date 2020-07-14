@@ -17,11 +17,11 @@ namespace WayToEarth.StaysOfWork
             parentStay = ps;
 
             gModel = ps.gModel;
-            centerPlanet = ps.centerPlanet;
-            rocket = ps.rocket;
-            playingBorder = ps.playingBorder;
+            gModel.centerPlanet = ps.gModel.centerPlanet;
+            gModel.rocket = ps.gModel.rocket;
+            gModel.playingBorder = ps.gModel.playingBorder;
 
-            fire = ps.fire;
+            gModel.fire = ps.gModel.fire;
 
             scale = ps.scale;
 

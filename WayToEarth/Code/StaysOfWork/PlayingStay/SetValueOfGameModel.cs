@@ -24,28 +24,7 @@ namespace WayToEarth.StaysOfWork
             file.Close();
 
 
-            centerPlanet = model.GetGameObjectByType<Planet>();
-            rocket = model.GetGameObjectByType<Rocket>();
-
-            fire = model.GetGameObjectByType<ReactiveGases>();
-            fire.rocket = rocket;
-
-            playingBorder = model.GetGameObjectByType<PlayingBorder>();
-            playingBorder.rocket = rocket;
-            playingBorder.planet = centerPlanet;
-
-            meteors = new List<Meteor>();
-            planets = new List<Planet>();
-            foreach (GameObject go in model.gObjects)
-            {
-                if (go is Meteor m) meteors.Add(m);
-                if (go is Planet p) planets.Add(p);
-            }
-
-
             model.RegisterListOfGameObjects(model.gObjects);
-
-            model.phModel.SetGravitationInteractive();
 
 
             return model;

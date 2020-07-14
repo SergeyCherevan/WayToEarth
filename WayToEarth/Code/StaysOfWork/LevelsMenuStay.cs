@@ -41,8 +41,7 @@ namespace WayToEarth.StaysOfWork
 
         public override void Controller()
         {
-            KeyValuePair<Message, object> mes =
-                controlerMessageTurn.popByCode(Message.ClickOfLevel1);
+            var mes = controlerMessageTurn.popByCode(Message.ClickOfLevel1);
 
             if (mes.Key == Message.ClickOfLevel1)
                 logicMessageTurn.push(mes);
@@ -65,8 +64,7 @@ namespace WayToEarth.StaysOfWork
 
         public override WayToSetNewStay Logic()
         {
-            KeyValuePair<Message, object> mes =
-                logicMessageTurn.popByCode(Message.ClickOfLevel1);
+            var mes = logicMessageTurn.popByCode(Message.ClickOfLevel1);
 
             if (mes.Key == Message.ClickOfLevel1)
             {

@@ -37,8 +37,7 @@
             Bang bang = new Bang();
             go1.model.addedObjects.Add(bang);
             
-            bang.image = MainWindow.Clone(MainWindow.window.Bang);            
-            MainWindow.window.PlayingCanvas.Children.Add(bang.image);
+            bang.ImageName = "Bang";
 
             bang.Coord = (go1.Coord + go2.Coord) / 2;
         }
@@ -51,8 +50,7 @@
             Bang bang = new Bang();
             planet.model.addedObjects.Add(bang);
 
-            bang.image = MainWindow.Clone(MainWindow.window.BigBang);
-            MainWindow.window.PlayingCanvas.Children.Add(bang.image);
+            bang.ImageName = "BigBang";
 
             bang.Coord = go.Coord;
         }
@@ -65,8 +63,7 @@
             Bang bang = new Bang();
             rocket.model.addedObjects.Add(bang);
 
-            bang.image = MainWindow.Clone(MainWindow.window.BigBang);
-            MainWindow.window.PlayingCanvas.Children.Add(bang.image);
+            bang.ImageName = "BigBang";
 
             bang.Coord = (rocket.Coord + go.Coord) / 2;
         }
@@ -78,8 +75,7 @@
             Bang bang = new Bang();
             planet.model.addedObjects.Add(bang);
 
-            bang.image = MainWindow.Clone(MainWindow.window.LargeBang);
-            MainWindow.window.PlayingCanvas.Children.Add(bang.image);
+            bang.ImageName = "LargeBang";
 
             bang.Coord = rocket.Coord;
         }

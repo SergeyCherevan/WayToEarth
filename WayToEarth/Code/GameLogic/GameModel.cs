@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using WayToEarth.NameMaps;
 using WayToEarth.Phisic;
 using WayToEarth.StaysOfWork;
 
@@ -12,11 +13,30 @@ namespace WayToEarth.GameLogic
 
         public List<GameObject> addedObjects { get; set; }
 
-        [JsonIgnore]
-        public PhisicalModel phModel { get; set; }
+        /**/
+
+        [JsonIgnore] public Planet centerPlanet;
+
+        [JsonIgnore] public Rocket rocket;
+
+        [JsonIgnore] public PlayingBorder playingBorder;
+
+        [JsonIgnore] public List<Meteor> meteors;
+        [JsonIgnore] public List<Planet> planets;
+
+
+        [JsonIgnore] public ReactiveGases fire;
+
+        /**/
+
+        [JsonIgnore] public PhisicalModel phModel;
 
         [JsonIgnore]
         public SetOfCollisionTypes CollisionTypes;
+
+
+        public MessageTurn messageTurn;
+
 
         public string strCollisionTypes
         {
@@ -31,6 +51,11 @@ namespace WayToEarth.GameLogic
             phModel = new PhisicalModel();
             addedObjects = new List<GameObject>();
             CollisionTypes = new SetOfCollisionTypes();
+
+            meteors = new List<Meteor>();
+            planets = new List<Planet>();
+
+            messageTurn = new MessageTurn();
         }
 
         public void RegisterListOfGameObjects(List<GameObject> objects)
@@ -38,16 +63,43 @@ namespace WayToEarth.GameLogic
             gObjects = objects;
 
             foreach (GameObject go in gObjects)
+            {
                 go.model = this;
+
+                if (go is Meteor m)
+                    meteors.Add(m);
+
+                if (go is Planet p)
+                    planets.Add(p);
+            }
+
+            centerPlanet = GetGameObjectByType<Planet>();
+            rocket = GetGameObjectByType<Rocket>();
+
+            fire = GetGameObjectByType<ReactiveGases>();
+            fire.rocket = rocket;
+
+            playingBorder = GetGameObjectByType<PlayingBorder>();
+            playingBorder.rocket = rocket;
+            playingBorder.planet = centerPlanet;
 
             phModel.RegisterListOfGameObjects(gObjects);
         }
 
-        public GameModel Add(GameObject o)
+        public GameModel Add(GameObject go)
         {
-            gObjects.Add(o);
-            if (o is PhisicSimulatedGameObj) phModel.Add(((PhisicSimulatedGameObj)o).phisObj);
-            o.model = this;
+            gObjects.Add(go);
+
+            if (go is PhisicSimulatedGameObj)
+                phModel.Add(((PhisicSimulatedGameObj)go).phisObj);
+
+            go.model = this;
+
+            if (go is Meteor m)
+                meteors.Add(m);
+
+            if (go is Planet p)
+                planets.Add(p);
 
             return this;
         }
@@ -85,7 +137,6 @@ namespace WayToEarth.GameLogic
 
         public void ComputingOfActionsAfterIntract(double timeInSec)
         {
-
             foreach (GameObject go1 in gObjects)
             {
                 go1.ActionAlwaysAfterIntract?.Invoke(go1, timeInSec);
@@ -124,12 +175,24 @@ namespace WayToEarth.GameLogic
                 {
                     newgObjects.Add(go);
 
-                    if (go is PhisicSimulatedGameObj)
-                        newPhModel.Add(   ((PhisicSimulatedGameObj)go).phisObj   );
+                    if (go is PhisicSimulatedGameObj pgo)
+                        newPhModel.Add(pgo.phisObj);
                 }
                 else
                 {
-                    if (go is Meteor)
+                    if (go.ImageName == "SmallPlanet")
+                        MainWindow.window.PlayingCanvas.Children.Remove(go.image);
+
+                    if (go.ImageName == "Meteor")
+                        MainWindow.window.PlayingCanvas.Children.Remove(go.image);
+
+                    if (go.ImageName == "Bang")
+                        MainWindow.window.PlayingCanvas.Children.Remove(go.image);
+
+                    if (go.ImageName == "BigBang")
+                        MainWindow.window.PlayingCanvas.Children.Remove(go.image);
+
+                    if (go.ImageName == "LargeBang")
                         MainWindow.window.PlayingCanvas.Children.Remove(go.image);
                 }
             }

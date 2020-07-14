@@ -1,10 +1,13 @@
-﻿using WayToEarth.Phisic;
+﻿using System;
+using WayToEarth.Phisic;
 
 namespace WayToEarth.GameLogic
 {
     public class Bang : VisioObject
     {
         double Time;
+
+        double angulVel;
 
         public Bang() : base()
         {
@@ -14,14 +17,16 @@ namespace WayToEarth.GameLogic
 
             Time = 20;
 
+            while(Math.Abs(angulVel) < 2) angulVel = new Random().Next(-7, 8);
+
             ActionAlwaysBeforeIntract += Burning;
         }
 
         public static void Burning(GameObject go, double timeInSec)
         {
-            Bang bang = (Bang)go;
+            Bang bang = go as Bang;
 
-            bang.Angle += 5;
+            bang.Angle += bang.angulVel;
 
             bang.Time -= timeInSec;
 

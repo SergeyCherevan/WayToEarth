@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using WayToEarth.GameLogic;
+using WayToEarth.NameMaps;
 using static WayToEarth.Phisic.PhisicalObject;
 using Action = WayToEarth.Phisic.PhisicalObject.Action;
 

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using WayToEarth.GameLogic;
+using WayToEarth.NameMaps;
 using WayToEarth.Phisic;
 using static WayToEarth.Phisic.PhisicalObject;
 using Action = WayToEarth.Phisic.PhisicalObject.Action;

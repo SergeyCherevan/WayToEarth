@@ -19,8 +19,6 @@ namespace WayToEarth.GameLogic
         public Meteor() : base()
         {
             phisObj = new MaterialPoint();
-
-            phisObj.mass = 1e+4;
         }
     }
 }

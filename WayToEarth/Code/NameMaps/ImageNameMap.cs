@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 
-namespace WayToEarth
+namespace WayToEarth.NameMaps
 {
     public class ImageNameMap
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WayToEarth.GameLogic
+namespace WayToEarth.NameMaps
 {
     public class MethodNameMap<Method>
         where Method : MulticastDelegate
