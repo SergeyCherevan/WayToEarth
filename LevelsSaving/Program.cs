@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WayToEarth.GameLogic;
+using WayToEarth.NameMaps;
 using WayToEarth.StaysOfWork;
 
 namespace WayToEarth
@@ -29,16 +33,36 @@ namespace WayToEarth
 
                 MainProgramWork.SetValueOfStaticMethodsMaps();
 
-                PlayingStay stay = new PlayingStay();
+                GameModel gm = GameModelCreator.Create(1);
+                SaveLevel(1, gm);
 
-                stay.SaveLevel(1);
-                stay.SaveLevel(2);
-                stay.SaveLevel(3);
+                gm = GameModelCreator.Create(2);
+                SaveLevel(2, gm);
+
+                gm = GameModelCreator.Create(3);
+                SaveLevel(3, gm);
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
+        }
+
+        public static void SaveLevel(int level, GameModel gModel)
+        {
+            StreamWriter file = new StreamWriter($@"C:\Users\chere\Source\Repos\SergeyCherevan\WayToEarth\WayToEarth\Code\JSON\Level {level}.json", false);
+
+            var jsonSerializer = new JsonSerializer();
+            jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            jsonSerializer.TypeNameHandling = TypeNameHandling.Auto;
+            jsonSerializer.Formatting = Formatting.Indented;
+
+            JsonWriter jsonWriter = new JsonTextWriter(file);
+            jsonSerializer.Serialize(jsonWriter, gModel);
+
+            jsonWriter.Close();
+            file.Close();
         }
 
         public static void StarterImageMap()
